@@ -4,6 +4,6 @@ export const API = axios.create({
   headers: {
     "Content-type": "application/json",
   },
-  baseURL: "https://api.odcloud.kr/api/15077586/v1/",
+  baseURL: "https://api.odcloud.kr/api",
   withCredentials: true,
 });
