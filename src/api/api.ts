@@ -9,5 +9,5 @@ export const getAptSalesInfoDetail = async (
     `${rest.get.aptSalesInfoDetail}?page=${params.page}&perPage=${params.perPage}&serviceKey=${process.env.NEXT_PUBLIC_API_KEY}`
   );
 
-  return response.data;
+  return response.data.data;
 };
