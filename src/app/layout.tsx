@@ -1,6 +1,8 @@
 import Header from "@/components/Header/Header";
 import RootContainer from "@/components/RootContainer";
 import type { Metadata } from "next";
+import "../../public/reset.css";
+import { color } from "@/styles/color";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,8 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>
-        <RootContainer>{children}</RootContainer>
+      <body style={{ background: color.white }}>
+        <RootContainer>
+          <Header />
+          {children}
+        </RootContainer>
       </body>
     </html>
   );
