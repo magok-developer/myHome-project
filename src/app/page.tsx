@@ -1,35 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-import { rest } from "@/api/rest";
-import { getAptSalesInfoDetail } from "@/api/api";
-import { APT_DETAIL_REQUEST } from "@/api/model";
+import { color } from "@/styles/color";
+import Image from "next/image";
+import styled from "styled-components";
 
-import dotenv from "dotenv";
-dotenv.config();
-
-const initialParams = {
-  page: 1,
-  perPage: 10,
-};
-
-const MyComponent = () => {
-  const [params, setParams] = useState(initialParams);
-  // const [data, setData] = useState<any>(null);
-
-  const { data } = useQuery({
-    queryKey: [rest.get.aptSalesInfoDetail, params],
-    queryFn: ({ queryKey }) =>
-      getAptSalesInfoDetail(queryKey[1] as APT_DETAIL_REQUEST),
-  });
-
+const Page = () => {
   return (
-    <div>
-      <pre id='data'>{data?.map((item) => item.BSNS_MBY_NM)}</pre>
-    </div>
+    <Container>
+      <Image src='/images/House.png' width={200} height={200} alt='main' />
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ fontSize: "20px", fontWeight: "bold" }}>
+          복잡한 청약 정보는
+        </div>
+        <div style={{ fontSize: "24px", fontWeight: "bold", color: color[5] }}>
+          My Home
+        </div>
+      </div>
+    </Container>
   );
 };
 
-export default MyComponent;
+export default Page;
+
+const Container = styled.div`
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
