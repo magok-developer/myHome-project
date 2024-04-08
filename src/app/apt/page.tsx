@@ -8,7 +8,9 @@ import { APT_DETAIL_REQUEST } from "@/api/model";
 import dotenv from "dotenv";
 import Item from "@/components/Item/Item";
 import styled from "styled-components";
-import Link from "next/link";
+import SelectBox from "@/components/SelectBox/SelectBox";
+import { AREA_CODE_OPTIONS } from "../../../public/static/static";
+import useChangeSelect from "@/components/hook/useChangeSelect";
 
 dotenv.config();
 
@@ -19,7 +21,7 @@ const initialParams = {
 
 const Page = () => {
   const [params, setParams] = useState(initialParams);
-  // const [data, setData] = useState<any>(null);
+  const { select, onChange: onChangeSelect, setSelect } = useChangeSelect(null);
 
   const { data } = useQuery({
     queryKey: [rest.get.aptSalesInfoDetail, params],
@@ -30,6 +32,16 @@ const Page = () => {
   return (
     <Container>
       <Title>아파트 분양 정보</Title>
+      <FilterWrap>
+        <div style={{ display: "flex", gap: "20px" }}>
+          <SelectBox
+            options={AREA_CODE_OPTIONS}
+            value={select}
+            onChange={onChangeSelect}
+          />
+        </div>
+        <div>인풋</div>
+      </FilterWrap>
       {data?.map((item, index) => (
         <Item
           key={`${item.HOUSE_MANAGE_NO}_${index}`}
@@ -56,4 +68,10 @@ const Title = styled.div`
   font-weight: bold;
   text-align: center;
   margin: 50px 0;
+`;
+
+const FilterWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0;
 `;
