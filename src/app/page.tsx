@@ -12,7 +12,13 @@ const Page = () => {
         <div style={{ fontSize: "20px", fontWeight: "bold" }}>
           복잡한 청약 정보는
         </div>
-        <div style={{ fontSize: "24px", fontWeight: "bold", color: color[5] }}>
+        <div
+          style={{
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: color.blue.blue,
+          }}
+        >
           My Home
         </div>
       </div>
