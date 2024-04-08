@@ -1,5 +1,6 @@
 "use client";
 
+import { color } from "@/styles/color";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -25,7 +26,7 @@ const Item = ({
 
   return (
     <Container>
-      <Image src='/images/sample.jpg' width={595} height={304} alt='image' />
+      <Image src='/images/sample.jpg' width={550} height={304} alt='image' />
       <Content>
         <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
           <Link href={`/detail/${id}`}>
@@ -71,8 +72,11 @@ const Content = styled.div`
   flex-direction: column;
   gap: 10px;
   .house-name {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
+    &:hover {
+      color: ${color.blue.navy};
+    }
   }
   .address {
     font-size: 14px;
