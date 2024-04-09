@@ -96,7 +96,7 @@ const StyledSelect = styled.div<any>`
   box-sizing: border-box;
   border-radius: 6px;
 
-  border: 1px solid ${color.blue.blue};
+  border: 1px solid ${color.secondary.black};
   color: ${color.secondary.black};
 
   .value {
@@ -117,7 +117,7 @@ const OptionWrapper = styled.ul<any>`
   z-index: 3;
 
   overflow: hidden;
-  border: 1px solid ${color.blue.blue};
+  border: 1px solid ${color.secondary.black};
 
   &:first-child {
     border-radius: 6px 6px 0 0;

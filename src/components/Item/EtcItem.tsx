@@ -8,6 +8,7 @@ import Modal from "../Modal/Modal";
 import { ETC_DETAIL_RESPONSE } from "@/api/model";
 import MapComponent from "../Map/Map";
 import { formatForHouseCode } from "../../../public/lib/formatForEnum";
+import { APPLICATION_STATUS } from "../../../public/lib/enum";
 
 type Props = {
   id: string;
@@ -27,189 +28,245 @@ const EtcItem = ({
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const getApplicationStatus = (): APPLICATION_STATUS => {
+    const today = new Date();
+    const startDate = new Date(data.SUBSCRPT_RCEPT_BGNDE);
+    const endDate = new Date(data.SUBSCRPT_RCEPT_ENDDE);
+
+    if (today < startDate) {
+      return APPLICATION_STATUS.UPCOMING;
+    } else if (today >= startDate && today <= endDate) {
+      return APPLICATION_STATUS.OPEN;
+    } else {
+      return APPLICATION_STATUS.CLOSED;
+    }
+  };
+
+  const status = getApplicationStatus();
+
+  let textColor;
+  switch (status) {
+    case APPLICATION_STATUS.UPCOMING:
+      textColor = color.blue.blue;
+      break;
+    case APPLICATION_STATUS.OPEN:
+      textColor = color.secondary.green;
+      break;
+    case APPLICATION_STATUS.CLOSED:
+      textColor = color.secondary.red;
+      break;
+  }
+
   return (
-    <Container>
-      <Image src='/images/sample.jpg' width={550} height={304} alt='image' />
-      <Content>
-        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-          <div className='house-name' onClick={openModal}>
-            {data.HOUSE_NM}
-          </div>
-
-          <Image
-            src='/images/icons/arrow-right.svg'
-            width={20}
-            height={20}
-            alt='arrow'
-          />
+    <>
+      <Container>
+        <div style={{ width: "550px", height: "350px" }}>
+          <MapComponent address={data.HSSPLY_ADRES} />
         </div>
-
-        <div
-          style={{
-            fontWeight: "bold",
-            fontSize: "14px",
-            color: color.secondary.green,
-            marginTop: "10px",
-            display: "flex",
-            alignItems: "center",
-            gap: "4px",
-          }}
-        >
-          <Image
-            src='/images/icons/home.svg'
-            width={16}
-            height={16}
-            alt='icon'
-          />
-          {formatForHouseCode(data.SEARCH_HOUSE_SECD)}
-        </div>
-
-        <DateWrap>
-          <div className='title'>
+        <Content>
+          <div
+            style={{
+              color: textColor,
+              fontSize: "14px",
+              fontWeight: "bold",
+              marginBottom: "4px",
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+            }}
+          >
             <Image
-              src='/images/icons/location.svg'
+              src='/images/icons/flag.svg'
+              width={16}
+              height={16}
+              alt='flag'
+            />
+            {status}
+          </div>
+          <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+            <div className='house-name' onClick={openModal}>
+              {data.HOUSE_NM}
+            </div>
+
+            <Image
+              src='/images/icons/arrow-right.svg'
+              width={20}
+              height={20}
+              alt='arrow'
+            />
+          </div>
+
+          <div
+            style={{
+              fontWeight: "bold",
+              fontSize: "14px",
+              color: color.secondary.green,
+              marginTop: "10px",
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+            }}
+          >
+            <Image
+              src='/images/icons/home.svg'
               width={16}
               height={16}
               alt='icon'
             />
-            주소
+            {formatForHouseCode(data.SEARCH_HOUSE_SECD)}
           </div>
-          <div className='address'>
-            ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
-          </div>
-        </DateWrap>
 
-        <DateWrap>
-          <div className='title'>
-            <Image
-              src='/images/icons/calendar.svg'
-              width={16}
-              height={16}
-              alt='icon'
-            />
-            모집 공고일
-          </div>
-          <div className='date'>{data.RCRIT_PBLANC_DE}</div>
-        </DateWrap>
-        <DateWrap>
-          <div className='title'>
-            <Image
-              src='/images/icons/calendar.svg'
-              width={16}
-              height={16}
-              alt='icon'
-            />
-            청약 접수 기간
-          </div>
-          <div className='date'>
-            {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
-          </div>
-        </DateWrap>
-      </Content>
-      <Modal visible={isModalOpen} onClose={closeModal}>
-        <ModalContainer>
-          <LeftSection>
-            <h3>{data.HOUSE_NM}</h3>
-            <div
-              style={{
-                fontSize: "14px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
+          <DateWrap>
+            <div className='title'>
               <Image
                 src='/images/icons/location.svg'
                 width={16}
                 height={16}
                 alt='icon'
-                style={{ marginRight: "4px" }}
               />
+              주소
+            </div>
+            <div className='address'>
               ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
             </div>
+          </DateWrap>
 
-            <MapComponent address={data.HSSPLY_ADRES} />
-          </LeftSection>
-          <div className='line' />
-          <RightSection>
-            <div className='wrap'>
+          <DateWrap>
+            <div className='title'>
+              <Image
+                src='/images/icons/calendar.svg'
+                width={16}
+                height={16}
+                alt='icon'
+              />
+              모집 공고일
+            </div>
+            <div className='date'>{data.RCRIT_PBLANC_DE}</div>
+          </DateWrap>
+          <DateWrap>
+            <div className='title'>
+              <Image
+                src='/images/icons/calendar.svg'
+                width={16}
+                height={16}
+                alt='icon'
+              />
+              청약 접수 기간
+            </div>
+            <div className='date'>
+              {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
+            </div>
+          </DateWrap>
+        </Content>
+        <Modal visible={isModalOpen} onClose={closeModal}>
+          <ModalContainer>
+            <LeftSection>
+              <h3>{data.HOUSE_NM}</h3>
               <div
-                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+                style={{
+                  fontSize: "14px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
                 <Image
-                  src='/images/icons/calendar.svg'
+                  src='/images/icons/location.svg'
                   width={16}
                   height={16}
                   alt='icon'
+                  style={{ marginRight: "4px" }}
                 />
-                <h5>모집 공고일</h5>
+                ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
               </div>
-              <div className='period'>{data.RCRIT_PBLANC_DE}</div>
-            </div>
-            <div className='wrap'>
-              <div
-                style={{ display: "flex", gap: "8px", alignItems: "center" }}
-              >
-                <Image
-                  src='/images/icons/calendar.svg'
-                  width={16}
-                  height={16}
-                  alt='icon'
-                />
-                <h5>청약 접수 기간</h5>
-              </div>
-              <div className='period'>
-                {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
-              </div>
-            </div>
 
-            <div className='wrap'>
-              <div
-                style={{ display: "flex", gap: "8px", alignItems: "center" }}
-              >
-                <Image
-                  src='/images/icons/calendar.svg'
-                  width={16}
-                  height={16}
-                  alt='icon'
-                />
-                <h5>당첨자 발표일</h5>
+              <MapComponent address={data.HSSPLY_ADRES} />
+            </LeftSection>
+            <div className='line' />
+            <RightSection>
+              <div className='wrap'>
+                <div
+                  style={{ display: "flex", gap: "8px", alignItems: "center" }}
+                >
+                  <Image
+                    src='/images/icons/calendar.svg'
+                    width={16}
+                    height={16}
+                    alt='icon'
+                  />
+                  <h5>모집 공고일</h5>
+                </div>
+                <div className='period'>{data.RCRIT_PBLANC_DE}</div>
               </div>
-              <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
-            </div>
-            <div className='wrap'>
-              <div
-                style={{ display: "flex", gap: "8px", alignItems: "center" }}
-              >
-                <Image
-                  src='/images/icons/calendar.svg'
-                  width={16}
-                  height={16}
-                  alt='icon'
-                />
-                <h5>계약 기간</h5>
+              <div className='wrap'>
+                <div
+                  style={{ display: "flex", gap: "8px", alignItems: "center" }}
+                >
+                  <Image
+                    src='/images/icons/calendar.svg'
+                    width={16}
+                    height={16}
+                    alt='icon'
+                  />
+                  <h5>청약 접수 기간</h5>
+                </div>
+                <div className='period'>
+                  {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
+                </div>
               </div>
-              <div className='period'>
-                {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
+
+              <div className='wrap'>
+                <div
+                  style={{ display: "flex", gap: "8px", alignItems: "center" }}
+                >
+                  <Image
+                    src='/images/icons/calendar.svg'
+                    width={16}
+                    height={16}
+                    alt='icon'
+                  />
+                  <h5>당첨자 발표일</h5>
+                </div>
+                <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
               </div>
-            </div>
-            <div className='wrap'>
-              <div
-                style={{ display: "flex", gap: "8px", alignItems: "center" }}
-              >
-                <Image
-                  src='/images/icons/calendar.svg'
-                  width={16}
-                  height={16}
-                  alt='icon'
-                />
-                <h5>입주 예정 월</h5>
+              <div className='wrap'>
+                <div
+                  style={{ display: "flex", gap: "8px", alignItems: "center" }}
+                >
+                  <Image
+                    src='/images/icons/calendar.svg'
+                    width={16}
+                    height={16}
+                    alt='icon'
+                  />
+                  <h5>계약 기간</h5>
+                </div>
+                <div className='period'>
+                  {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
+                </div>
               </div>
-              <div className='period'>{data.MVN_PREARNGE_YM}</div>
-            </div>
-          </RightSection>
-        </ModalContainer>
-      </Modal>
-    </Container>
+              <div className='wrap'>
+                <div
+                  style={{ display: "flex", gap: "8px", alignItems: "center" }}
+                >
+                  <Image
+                    src='/images/icons/calendar.svg'
+                    width={16}
+                    height={16}
+                    alt='icon'
+                  />
+                  <h5>입주 예정 월</h5>
+                </div>
+                <div className='period'>{data.MVN_PREARNGE_YM}</div>
+              </div>
+            </RightSection>
+          </ModalContainer>
+        </Modal>
+      </Container>
+      <div
+        style={{ height: "1px", width: "100%", background: color.blue.skyBlue }}
+      />
+    </>
   );
 };
 
@@ -218,7 +275,7 @@ export default EtcItem;
 const Container = styled.div`
   display: flex;
   gap: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 
 const Content = styled.div`

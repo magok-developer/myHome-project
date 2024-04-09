@@ -37,7 +37,7 @@ const MapComponent = ({ address }: Props) => {
       center={centerPosition}
       style={{
         width: "100%",
-        height: "450px",
+        height: "100%",
       }}
       level={4} // 적절한 레벨 설정
     >

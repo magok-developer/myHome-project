@@ -52,3 +52,9 @@ export enum HOUSE_CODE {
   PRIVATE_RENTAL = "0203",
   PUBLIC_RENTAL = "0303",
 }
+
+export enum APPLICATION_STATUS {
+  UPCOMING = "청약 접수 예정",
+  OPEN = "청약 접수 중",
+  CLOSED = "청약 접수 마감",
+}
