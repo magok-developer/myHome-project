@@ -2,7 +2,7 @@
 
 import { color } from "@/styles/color";
 import Image from "next/image";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const Page = () => {
   return (
@@ -16,7 +16,7 @@ const Page = () => {
           style={{
             fontSize: "24px",
             fontWeight: "bold",
-            color: color.blue.blue,
+            color: color.secondary.white,
           }}
         >
           My Home
@@ -29,8 +29,13 @@ const Page = () => {
 export default Page;
 
 const Container = styled.div`
-  height: 500px;
+  height: 605px;
+  padding-left: 10%;
   display: flex;
   align-items: center;
-  justify-content: center;
+
+  background: no-repeat #526d80;
+  background-image: url("/images/main.jpg");
+  background-size: 60%;
+  background-position: right;
 `;
