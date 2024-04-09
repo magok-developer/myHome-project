@@ -13,12 +13,8 @@ const router = [
     label: "아파트",
   },
   {
-    path: "/",
-    label: "오피스텔",
-  },
-  {
-    path: "/",
-    label: "도시형",
+    path: "/etc",
+    label: "아파트 외",
   },
 ];
 

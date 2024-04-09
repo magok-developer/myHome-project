@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { rest } from "@/api/rest";
-import { getAptSalesInfoDetail } from "@/api/api";
-import { APT_DETAIL_REQUEST } from "@/api/model";
-import dotenv from "dotenv";
-import AptItem from "@/components/Item/AptItem";
-import styled from "@emotion/styled";
 import SelectBox from "@/components/SelectBox/SelectBox";
-import { AREA_CODE_OPTIONS } from "../../../public/static/static";
 import useChangeSelect from "@/components/hook/useChangeSelect";
-import { color } from "@/styles/color";
+import styled from "@emotion/styled";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import dotenv from "dotenv";
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { AREA_CODE_OPTIONS } from "../../../public/static/static";
+import OffItem from "@/components/Item/EtcItem";
+import { getEtcSalesInfoDetail } from "@/api/api";
+import { ETC_DETAIL_REQUEST } from "@/api/model";
 
 dotenv.config();
 
@@ -26,12 +25,12 @@ const Page = () => {
   const { select, onChange: onChangeSelect, setSelect } = useChangeSelect(null);
   const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: [rest.get.aptSalesInfoDetail, params],
+      queryKey: [rest.get.etcSalesInfoDetail, params],
       queryFn: ({ pageParam = initialParams.page }) =>
-        getAptSalesInfoDetail({
+        getEtcSalesInfoDetail({
           ...params,
           page: pageParam,
-        } as APT_DETAIL_REQUEST),
+        } as ETC_DETAIL_REQUEST),
       getNextPageParam: (lastPage, allPages) => {
         // 마지막 페이지가 모든 페이지 중 마지막 페이지인지 확인
         if (lastPage.length < initialParams.perPage) {
@@ -70,13 +69,8 @@ const Page = () => {
   return (
     <Container>
       <Title>
-        <Image
-          src='/images/icons/building.svg'
-          width={24}
-          height={24}
-          alt='icon'
-        />
-        아파트 분양 정보
+        <Image src='/images/icons/home.svg' width={24} height={24} alt='icon' />
+        오피스텔 / 도시형생활주택 / 민간임대 분양 정보
       </Title>
       <FilterWrap>
         <div>인풋</div>
@@ -91,7 +85,7 @@ const Page = () => {
       {data?.pages.map((pageData, index) => (
         <React.Fragment key={index}>
           {pageData.map((item, index) => (
-            <AptItem
+            <OffItem
               key={`${item.HOUSE_MANAGE_NO}_${index}`}
               id={item.HOUSE_MANAGE_NO}
               data={item}

@@ -52,3 +52,33 @@ export type APT_DETAIL_REQUEST = {
   page: number;
   perPage: number;
 };
+
+export type ETC_DETAIL_RESPONSE = {
+  HOUSE_MANAGE_NO: string;
+  PBLANC_NO: string;
+  HOUSE_NM: string;
+  HOUSE_SECD: string;
+  HOUSE_SECD_NM: string;
+  HOUSE_DTL_SECD: string;
+  HOUSE_DTL_SECD_NM: string;
+  SEARCH_HOUSE_SECD: string;
+  HSSPLY_ZIP: string;
+  HSSPLY_ADRES: string;
+  TOT_SUPLY_HSHLDCO: number;
+  RCRIT_PBLANC_DE: string;
+  SUBSCRPT_RCEPT_BGNDE: string;
+  SUBSCRPT_RCEPT_ENDDE: string;
+  PRZWNER_PRESNATN_DE: string;
+  CNTRCT_CNCLS_BGNDE: string;
+  CNTRCT_CNCLS_ENDDE: string;
+  HMPG_ADRES: string;
+  BSNS_MBY_NM: string;
+  MDHS_TELNO: string;
+  MVN_PREARNGE_YM: string;
+  PBLANC_URL: string;
+};
+
+export type ETC_DETAIL_REQUEST = {
+  page: number;
+  perPage: number;
+};

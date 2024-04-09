@@ -12,7 +12,7 @@ type Props = {
   id: string;
   data: APT_DETAIL_RESPONSE;
 };
-const Item = ({
+const AptItem = ({
   id,
 
   data,
@@ -256,7 +256,7 @@ const Item = ({
                   height={16}
                   alt='icon'
                 />
-                <h5>계약 시작일</h5>
+                <h5>계약 기간</h5>
               </div>
               <div className='period'>
                 {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
@@ -283,7 +283,7 @@ const Item = ({
   );
 };
 
-export default Item;
+export default AptItem;
 
 const Container = styled.div`
   display: flex;

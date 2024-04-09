@@ -1,4 +1,4 @@
-import { AREA_CODE } from "./enum";
+import { AREA_CODE, HOUSE_CODE } from "./enum";
 
 export const formatForAreaCode = (status: AREA_CODE): string => {
   const returnStatus = new Map([
@@ -22,4 +22,15 @@ export const formatForAreaCode = (status: AREA_CODE): string => {
   ]);
 
   return returnStatus.get(status) ?? "";
+};
+
+export const formatForHouseCode = (status: string): string => {
+  const returnStatus = new Map([
+    [HOUSE_CODE.HOUSE, "도시형 생활 주택"],
+    [HOUSE_CODE.OFFICETEL, "오피스텔"],
+    [HOUSE_CODE.PRIVATE_RENTAL, "민간 임대"],
+    [HOUSE_CODE.PUBLIC_RENTAL, "공공 지원 민간 임대"],
+  ]);
+
+  return returnStatus.get(status as HOUSE_CODE) ?? "";
 };

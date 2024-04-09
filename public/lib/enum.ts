@@ -38,3 +38,17 @@ export enum AREA_CODE {
   DEAGU = 700,
   GYEONGBUK = 712,
 }
+
+/**
+ * 도시형생활주택 0201
+ * 오피스텔 0202
+ * 민간임대 0203
+ * 공공지원민간임대 0303
+ */
+
+export enum HOUSE_CODE {
+  HOUSE = "0201",
+  OFFICETEL = "0202",
+  PRIVATE_RENTAL = "0203",
+  PUBLIC_RENTAL = "0303",
+}
