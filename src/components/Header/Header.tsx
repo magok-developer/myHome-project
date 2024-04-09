@@ -4,7 +4,8 @@ import { color } from "@/styles/color";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { usePathname } from "next/navigation";
 
 const router = [
   {
@@ -22,6 +23,7 @@ const router = [
 ];
 
 const Header = () => {
+  const path = usePathname();
   const [visible, setVisible] = useState(false);
 
   const handleClickMenu = () => {
@@ -33,10 +35,14 @@ const Header = () => {
   };
 
   return (
-    <Container>
+    <Container isHomePage={path === "/"}>
       <Link href='/'>
         <Image
-          src='/images/icons/home-smile.svg'
+          src={
+            path === "/"
+              ? "images/icons/home-smile-white.svg"
+              : "/images/icons/home-smile.svg"
+          }
           width={30}
           height={30}
           alt='home'
@@ -48,8 +54,8 @@ const Header = () => {
           분양 정보
         </div>
         <Menu visible={visible}>
-          {router.map((item) => (
-            <Link href={item.path}>
+          {router.map((item, index) => (
+            <Link href={item.path} key={`${item.path}_${index}`}>
               <div onClick={handleClickOther} className='label'>
                 {item.label}
               </div>
@@ -67,7 +73,7 @@ const Header = () => {
 
 export default Header;
 
-const Container = styled.div`
+const Container = styled.div<{ isHomePage: boolean }>`
   position: fixed;
   top: 0;
   width: 100%;
@@ -79,7 +85,11 @@ const Container = styled.div`
 
   box-sizing: border-box;
   z-index: 3;
-  background-color: ${color.secondary.white};
+
+  background: ${({ isHomePage }) =>
+    isHomePage ? "#526D80" : color.secondary.white};
+  color: ${({ isHomePage }) =>
+    isHomePage ? color.secondary.white : color.secondary.black};
 `;
 
 const Wrap = styled.div`
@@ -100,6 +110,7 @@ const Menu = styled.div<{ visible: boolean }>`
   padding: 16px;
 
   box-sizing: border-box;
+  color: ${color.secondary.black};
 
   font-size: 14px;
 
