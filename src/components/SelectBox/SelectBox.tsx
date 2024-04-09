@@ -96,8 +96,10 @@ const StyledSelect = styled.div<any>`
   box-sizing: border-box;
   border-radius: 6px;
 
-  border: 1px solid ${color.secondary.black};
+  border: 1px solid #bebebe;
   color: ${color.secondary.black};
+
+  background: #e2e2e2;
 
   .value {
     width: 100%;
@@ -117,7 +119,7 @@ const OptionWrapper = styled.ul<any>`
   z-index: 3;
 
   overflow: hidden;
-  border: 1px solid ${color.secondary.black};
+  border: 1px solid #bebebe;
 
   &:first-child {
     border-radius: 6px 6px 0 0;
@@ -138,9 +140,9 @@ const OptionWrapper = styled.ul<any>`
     background-color: ${color.secondary.white};
   }
   li:hover {
-    background: ${color.blue.skyBlue};
-    border-bottom: 1px solid ${color.blue.blue};
-    border-top: 1px solid ${color.blue.blue};
+    background: ${color.yellow.yellow};
+    border-bottom: 1px solid ${color.yellow.lemonYellow};
+    border-top: 1px solid ${color.yellow.lemonYellow};
 
     &:first-child {
       border-radius: 5px 5px 0 0;
