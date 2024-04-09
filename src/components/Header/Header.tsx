@@ -103,7 +103,7 @@ const Menu = styled.div<{ visible: boolean }>`
 
   font-size: 14px;
 
-  border: 1px solid ${color.yellow.lemonYellow};
+  border: 1px solid ${color.blue.blue};
   background-color: ${color.secondary.white};
   border-radius: 4px;
   .label:hover {
