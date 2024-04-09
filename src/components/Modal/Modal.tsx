@@ -1,7 +1,7 @@
 "use client";
 
+import styled from "@emotion/styled";
 import Image from "next/image";
-import styled from "styled-components";
 
 export type ModalProps = {
   visible?: boolean;
