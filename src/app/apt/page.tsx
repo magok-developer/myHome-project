@@ -46,11 +46,7 @@ const Page = () => {
         <Item
           key={`${item.HOUSE_MANAGE_NO}_${index}`}
           id={item.HOUSE_MANAGE_NO}
-          name={item.HOUSE_NM}
-          address={item.HSSPLY_ADRES}
-          recruitDate={item.RCRIT_PBLANC_DE}
-          appStartDate={item.RCEPT_BGNDE}
-          appEndDate={item.RCEPT_ENDDE}
+          data={item}
         />
       ))}
     </Container>
