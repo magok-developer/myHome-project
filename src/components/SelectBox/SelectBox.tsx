@@ -3,7 +3,7 @@
 import { color } from "@/styles/color";
 import { useState } from "react";
 import Image from "next/image";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export type OPTION_TYPE<T> = { label: string; value: any };
 
