@@ -12,6 +12,7 @@ import SelectBox from "@/components/SelectBox/SelectBox";
 import { AREA_CODE_OPTIONS } from "../../../public/static/static";
 import useChangeSelect from "@/components/hook/useChangeSelect";
 import { color } from "@/styles/color";
+import Image from "next/image";
 
 dotenv.config();
 
@@ -68,7 +69,15 @@ const Page = () => {
 
   return (
     <Container>
-      <Title>아파트 분양 정보</Title>
+      <Title>
+        <Image
+          src='/images/icons/building.svg'
+          width={24}
+          height={24}
+          alt='icon'
+        />
+        아파트 분양 정보
+      </Title>
       <FilterWrap>
         <div style={{ display: "flex", gap: "20px" }}>
           <SelectBox
@@ -105,6 +114,10 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-size: 20px;
   font-weight: bold;
   text-align: center;

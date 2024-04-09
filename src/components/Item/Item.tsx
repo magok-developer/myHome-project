@@ -43,17 +43,49 @@ const Item = ({
           />
         </div>
 
-        <div style={{ fontWeight: "bold", marginTop: "30px" }}>주소</div>
+        <div
+          style={{
+            fontWeight: "bold",
+            marginTop: "30px",
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+          }}
+        >
+          <Image
+            src='/images/icons/location.svg'
+            width={16}
+            height={16}
+            alt='icon'
+          />
+          주소
+        </div>
         <div className='address'>
           ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
         </div>
 
         <DateWrap>
-          <div className='title'>모집 공고일</div>
+          <div className='title'>
+            <Image
+              src='/images/icons/calendar.svg'
+              width={16}
+              height={16}
+              alt='icon'
+            />
+            모집 공고일
+          </div>
           <div className='date'>{data.RCRIT_PBLANC_DE}</div>
         </DateWrap>
         <DateWrap>
-          <div className='title'>청약 접수 기간</div>
+          <div className='title'>
+            <Image
+              src='/images/icons/calendar.svg'
+              width={16}
+              height={16}
+              alt='icon'
+            />
+            청약 접수 기간
+          </div>
           <div className='date'>
             {data.RCEPT_BGNDE} ~ {data.RCEPT_ENDDE}
           </div>
@@ -63,7 +95,20 @@ const Item = ({
         <ModalContainer>
           <LeftSection>
             <h3>{data.HOUSE_NM}</h3>
-            <div style={{ fontSize: "14px" }}>
+            <div
+              style={{
+                fontSize: "14px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                src='/images/icons/location.svg'
+                width={16}
+                height={16}
+                alt='icon'
+                style={{ marginRight: "4px" }}
+              />
               ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
             </div>
 
@@ -72,44 +117,114 @@ const Item = ({
           <div className='line' />
           <RightSection>
             <div className='wrap'>
-              <h5>모집 공고일</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>모집 공고일</h5>
+              </div>
               <div className='period'>{data.RCRIT_PBLANC_DE}</div>
             </div>
             <div className='wrap'>
-              <h5>청약 접수 기간</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>청약 접수 기간</h5>
+              </div>
               <div className='period'>
                 {data.SPSPLY_RCEPT_BGNDE} ~ {data.RCEPT_ENDDE}
               </div>
             </div>
             <div className='wrap'>
-              <h5>특별 공급 접수 기간</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>특별 공급 접수 기간</h5>
+              </div>
               <div className='period'>
                 {data.SPSPLY_RCEPT_BGNDE} ~ {data.SPSPLY_RCEPT_ENDDE}
               </div>
             </div>
             <div className='wrap'>
-              <h5>1순위 해당지역 접수 기간</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>1순위 해당지역 접수 기간</h5>
+              </div>
               <div className='period'>
                 {data.GNRL_RNK1_CRSPAREA_RCPTDE} ~{" "}
                 {data.GNRL_RNK1_CRSPAREA_ENDDE}
               </div>
             </div>
             <div className='wrap'>
-              <h5>1순위 기타지역 접수 기간</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>1순위 기타지역 접수 기간</h5>
+              </div>
               <div className='period'>
                 {data.GNRL_RNK1_ETC_AREA_RCPTDE} ~{" "}
                 {data.GNRL_RNK1_ETC_AREA_ENDDE}
               </div>
             </div>
             <div className='wrap'>
-              <h5>2순위 해당지역 접수 기간</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>2순위 해당지역 접수 기간</h5>
+              </div>
               <div className='period'>
                 {data.GNRL_RNK2_CRSPAREA_RCPTDE} ~{" "}
                 {data.GNRL_RNK2_CRSPAREA_ENDDE}
               </div>
             </div>
             <div className='wrap'>
-              <h5>2순위 기타지역 접수 기간</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>2순위 기타지역 접수 기간</h5>
+              </div>
               <div className='period'>
                 {data.GNRL_RNK2_ETC_AREA_RCPTDE} ~{" "}
                 {data.GNRL_RNK2_ETC_AREA_ENDDE}
@@ -118,17 +233,47 @@ const Item = ({
           </RightSection>
           <RightSection>
             <div className='wrap'>
-              <h5>당첨자 발표일</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>당첨자 발표일</h5>
+              </div>
               <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
             </div>
             <div className='wrap'>
-              <h5>계약 시작일</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>계약 시작일</h5>
+              </div>
               <div className='period'>
                 {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
               </div>
             </div>
             <div className='wrap'>
-              <h5>입주 예정 월</h5>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center" }}
+              >
+                <Image
+                  src='/images/icons/calendar.svg'
+                  width={16}
+                  height={16}
+                  alt='icon'
+                />
+                <h5>입주 예정 월</h5>
+              </div>
               <div className='period'>{data.MVN_PREARNGE_YM}</div>
             </div>
           </RightSection>
@@ -170,6 +315,9 @@ const DateWrap = styled.div`
   .title {
     font-weight: bold;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
   .date {
     font-size: 14px;
@@ -179,6 +327,10 @@ const DateWrap = styled.div`
 const ModalContainer = styled.div`
   display: flex;
   padding: 50px;
+
+  h5 {
+    color: ${color.blue.navy};
+  }
 
   .line {
     width: 1px;
@@ -211,5 +363,6 @@ const RightSection = styled.div`
   }
   .period {
     font-size: 12px;
+    margin-left: 26px;
   }
 `;

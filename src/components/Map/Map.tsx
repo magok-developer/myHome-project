@@ -39,7 +39,7 @@ const MapComponent = ({ address }: Props) => {
         width: "100%",
         height: "450px",
       }}
-      level={3} // 적절한 레벨 설정
+      level={4} // 적절한 레벨 설정
     >
       {centerPosition && <MapMarker position={centerPosition} />}
     </Map>
