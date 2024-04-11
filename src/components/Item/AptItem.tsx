@@ -9,6 +9,7 @@ import { APT_DETAIL_RESPONSE } from "@/api/model";
 import MapComponent from "../Map/Map";
 import { APPLICATION_STATUS } from "../../../public/lib/enum";
 import Button from "../Button/Button";
+import Link from "next/link";
 
 type Props = {
   id: string;
@@ -379,7 +380,12 @@ const AptItem = ({
                   marginTop: "20px",
                 }}
               >
-                <Button text='경쟁률 보러가기' />
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <Link href={data.PBLANC_URL} target='_blank'>
+                    <Button text='청약홈으로 이동' variant='secondary' />
+                  </Link>
+                  <Button text='경쟁률 보러가기' variant='primary' />
+                </div>
               </div>
             </div>
           </ModalContainer>
