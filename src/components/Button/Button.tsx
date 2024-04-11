@@ -2,12 +2,17 @@ import { color } from "@/styles/color";
 import styled from "@emotion/styled";
 import React from "react";
 
-type Props = {
-  text: string;
+type BUTTON_STYLE_PROPS = {
+  variant?: "primary" | "secondary";
 };
-const Button = ({ text }: Props) => {
+
+type Props = BUTTON_STYLE_PROPS & {
+  text: string;
+  variant: string;
+};
+const Button = ({ text, variant }: Props) => {
   return (
-    <Container>
+    <Container variant={variant}>
       <div>{text}</div>
     </Container>
   );
@@ -15,19 +20,30 @@ const Button = ({ text }: Props) => {
 
 export default Button;
 
-const Container = styled.div`
+const COLOR_TYPE = {
+  ["primary"]: {
+    backgroundColor: `${color.blue.skyBlue}`,
+    color: `${color.secondary.white}`,
+  },
+  ["secondary"]: {
+    backgroundColor: `${color.yellow.lemonYellow}`,
+    color: `${color.secondary.green}`,
+  },
+};
+
+const Container = styled.div<BUTTON_STYLE_PROPS>`
+  ${({ variant }) => COLOR_TYPE[variant as "primary"]};
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  width: 200px;
+  width: 150px;
   height: 50px;
-  background-color: ${color.blue.skyBlue};
-  color: ${color.secondary.white};
   border-radius: 8px;
   cursor: pointer;
   &:hover {
-    background-color: ${color.blue.blue};
+    background-color: ${({ variant }) =>
+      variant?.includes("primary") ? color.blue.navy : color.yellow.yellow};
     transition: 0.2s;
   }
 `;
