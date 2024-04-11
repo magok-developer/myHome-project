@@ -89,7 +89,7 @@ const Container = styled.div`
 
 const StyledSelect = styled.div<any>`
   width: 152px;
-  height: 32px;
+  height: 30px;
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -112,7 +112,7 @@ const StyledSelect = styled.div<any>`
 
 const OptionWrapper = styled.ul<any>`
   position: absolute;
-  top: 31px;
+  top: 29px;
   box-sizing: border-box;
   border-radius: 6px;
 
