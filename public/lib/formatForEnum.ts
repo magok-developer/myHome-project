@@ -2,6 +2,7 @@ import { AREA_CODE, HOUSE_CODE } from "./enum";
 
 export const formatForAreaCode = (status: AREA_CODE): string => {
   const returnStatus = new Map([
+    [null, "전체"],
     [AREA_CODE.SEOUL, "서울"],
     [AREA_CODE.GANGWON, "강원"],
     [AREA_CODE.DAEJEON, "대전"],

@@ -2,6 +2,10 @@ import { AREA_CODE } from "../lib/enum";
 
 export const AREA_CODE_OPTIONS = [
   {
+    value: null,
+    label: "전체",
+  },
+  {
     value: AREA_CODE.SEOUL,
     label: "서울",
   },
