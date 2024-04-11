@@ -10,9 +10,9 @@ import { rest } from "./rest";
 export const getAptSalesInfoDetail = async (
   params: APT_DETAIL_REQUEST
 ): Promise<APT_DETAIL_RESPONSE[]> => {
-  const response = await API.get(
-    `${rest.get.aptSalesInfoDetail}?page=${params.page}&perPage=${params.perPage}&serviceKey=${process.env.NEXT_PUBLIC_API_KEY}`
-  );
+  const response = await API.get(`${rest.get.aptSalesInfoDetail}`, {
+    params: params,
+  });
 
   return response.data.data;
 };

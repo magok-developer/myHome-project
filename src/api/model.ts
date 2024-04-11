@@ -51,6 +51,10 @@ export type APT_DETAIL_RESPONSE = {
 export type APT_DETAIL_REQUEST = {
   page: number;
   perPage: number;
+  serviceKey: string;
+  cond: {
+    "SUBSCRPT_AREA_CODE_NM::EQ": null | string;
+  };
 };
 
 export type ETC_DETAIL_RESPONSE = {
