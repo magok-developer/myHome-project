@@ -37,8 +37,7 @@ const Container = styled.div<BUTTON_STYLE_PROPS>`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  width: 150px;
-  height: 50px;
+  padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
   &:hover {
