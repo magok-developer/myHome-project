@@ -16,10 +16,12 @@ const MapComponent = ({ address }: Props) => {
     lng: number;
   }>({ lat: 33.450701, lng: 126.570667 }); // 기본 중앙 좌표
 
+  const cutAddress = address.slice(0, address.indexOf("(")).trim();
+
   useEffect(() => {
     if (window.kakao.maps) {
       const geocoder = new window.kakao.maps.services.Geocoder();
-      geocoder.addressSearch(address, function (result: any, status: any) {
+      geocoder.addressSearch(cutAddress, function (result: any, status: any) {
         if (status === window.kakao.maps.services.Status.OK) {
           // 주소를 좌표로 변환한 결과를 중앙 좌표로 설정
           const lat = result[0].y;
@@ -30,7 +32,7 @@ const MapComponent = ({ address }: Props) => {
         }
       });
     }
-  }, [address]);
+  }, [cutAddress]);
 
   return (
     <Map
