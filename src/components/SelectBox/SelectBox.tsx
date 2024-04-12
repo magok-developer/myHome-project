@@ -92,15 +92,15 @@ const StyledSelect = styled.div<any>`
   height: 30px;
   display: flex;
   align-items: center;
+  font-size: 14px;
   font-weight: bold;
   box-sizing: border-box;
   border-radius: 6px;
 
-  border: 1px solid #bebebe;
+  border: 1px solid ${color.yellow.lemonYellow};
   color: ${color.secondary.black};
 
-  background: #e2e2e2;
-
+  background: ${color.yellow.yellow};
   .value {
     width: 100%;
     height: 100%;
@@ -119,7 +119,7 @@ const OptionWrapper = styled.ul<any>`
   z-index: 3;
 
   overflow: hidden;
-  border: 1px solid #bebebe;
+  border: 1px solid ${color.yellow.yellow};
 
   &:first-child {
     border-radius: 6px 6px 0 0;
