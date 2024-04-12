@@ -30,6 +30,16 @@ const menuData = [
       },
     ],
   },
+  {
+    label: "경쟁률",
+    path: "/competition",
+    subMenu: [
+      {
+        label: "아파트",
+        path: "/aptCompetition",
+      },
+    ],
+  },
 ];
 
 const Header = () => {
