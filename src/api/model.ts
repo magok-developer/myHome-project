@@ -50,7 +50,7 @@ export type APT_DETAIL_RESPONSE = {
 
 export type APT_DETAIL_REQUEST = {
   page: number;
-  perPage: number;
+  perPage: number | null;
   cond: {
     "SUBSCRPT_AREA_CODE_NM::EQ": null | string;
   };
@@ -153,4 +153,27 @@ export type PUBLIC_DETAIL_RESPONSE = {
 export type PUBLIC_DETAIL_REQUEST = {
   page: number;
   perPage: number;
+};
+
+export type APT_COMPETITION_RESPONSE = {
+  HOUSE_MANAGE_NO: string;
+  PBLANC_NO: string;
+  MODEL_NO: string;
+  HOUSE_TY: string;
+  SUPLY_HSHLDCO: number;
+  SUBSCRPT_RANK_CODE: number;
+  RESIDE_SECD: string;
+  RESIDE_SENM: string;
+  REQ_CNT: string;
+  CMPET_RATE: string;
+};
+
+export type APT_COMPETITION_REQUEST = {
+  page: number;
+  perPage: number | null;
+  cond: {
+    "HOUSE_MANAGE_NO::EQ": string | null;
+    "RESIDE_SECD::EQ": null | string;
+  };
+  serviceKey: string;
 };

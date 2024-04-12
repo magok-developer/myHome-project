@@ -1,5 +1,7 @@
 import { API } from "./axiosConfig";
 import {
+  APT_COMPETITION_REQUEST,
+  APT_COMPETITION_RESPONSE,
   APT_DETAIL_REQUEST,
   APT_DETAIL_RESPONSE,
   ETC_DETAIL_REQUEST,
@@ -45,6 +47,16 @@ export const getPublicSalesInfoDetail = async (
   params: PUBLIC_DETAIL_REQUEST
 ): Promise<PUBLIC_DETAIL_RESPONSE[]> => {
   const response = await API.get(`${rest.get.publicSalesInfoDetail}`, {
+    params: params,
+  });
+
+  return response.data.data;
+};
+
+export const getAptCompetitionInfo = async (
+  params: APT_COMPETITION_REQUEST
+): Promise<APT_COMPETITION_RESPONSE[]> => {
+  const response = await API.get(`${rest.get.aptCompetitionInfo}`, {
     params: params,
   });
 
