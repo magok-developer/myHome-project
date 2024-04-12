@@ -4,6 +4,10 @@ import {
   APT_DETAIL_RESPONSE,
   ETC_DETAIL_REQUEST,
   ETC_DETAIL_RESPONSE,
+  LEFTOVER_DETAIL_REQUEST,
+  LEFTOVER_DETAIL_RESPONSE,
+  PUBLIC_DETAIL_REQUEST,
+  PUBLIC_DETAIL_RESPONSE,
 } from "./model";
 import { rest } from "./rest";
 
@@ -20,9 +24,29 @@ export const getAptSalesInfoDetail = async (
 export const getEtcSalesInfoDetail = async (
   params: ETC_DETAIL_REQUEST
 ): Promise<ETC_DETAIL_RESPONSE[]> => {
-  const response = await API.get(
-    `${rest.get.etcSalesInfoDetail}?page=${params.page}&perPage=${params.perPage}&serviceKey=${process.env.NEXT_PUBLIC_API_KEY}`
-  );
+  const response = await API.get(`${rest.get.etcSalesInfoDetail}`, {
+    params: params,
+  });
+
+  return response.data.data;
+};
+
+export const getLeftoverSalesInfoDetail = async (
+  params: LEFTOVER_DETAIL_REQUEST
+): Promise<LEFTOVER_DETAIL_RESPONSE[]> => {
+  const response = await API.get(`${rest.get.leftoverSalesInfoDetail}`, {
+    params: params,
+  });
+
+  return response.data.data;
+};
+
+export const getPublicSalesInfoDetail = async (
+  params: PUBLIC_DETAIL_REQUEST
+): Promise<PUBLIC_DETAIL_RESPONSE[]> => {
+  const response = await API.get(`${rest.get.publicSalesInfoDetail}`, {
+    params: params,
+  });
 
   return response.data.data;
 };

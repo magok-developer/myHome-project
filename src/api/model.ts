@@ -51,10 +51,10 @@ export type APT_DETAIL_RESPONSE = {
 export type APT_DETAIL_REQUEST = {
   page: number;
   perPage: number;
-  serviceKey: string;
   cond: {
     "SUBSCRPT_AREA_CODE_NM::EQ": null | string;
   };
+  serviceKey: string;
 };
 
 export type ETC_DETAIL_RESPONSE = {
@@ -83,6 +83,74 @@ export type ETC_DETAIL_RESPONSE = {
 };
 
 export type ETC_DETAIL_REQUEST = {
+  page: number;
+  perPage: number;
+  cond: {
+    "SEARCH_HOUSE_SECD::EQ": null | string;
+  };
+  serviceKey: string;
+};
+
+export type LEFTOVER_DETAIL_RESPONSE = {
+  HOUSE_MANAGE_NO: string;
+  PBLANC_NO: string;
+  HOUSE_NM: string;
+  HOUSE_SECD: string;
+  HOUSE_SECD_NM: string;
+  HSSPLY_ZIP: string;
+  HSSPLY_ADRES: string;
+  TOT_SUPLY_HSHLDCO: number;
+  RCRIT_PBLANC_DE: string;
+  SUBSCRPT_RCEPT_BGNDE: string;
+  SUBSCRPT_RCEPT_ENDDE: string;
+  SPSPLY_RCEPT_BGNDE: string;
+  SPSPLY_RCEPT_ENDDE: string;
+  GNRL_RCEPT_BGNDE: string;
+  GNRL_RCEPT_ENDDE: string;
+  PRZWNER_PRESNATN_DE: string;
+  CNTRCT_CNCLS_BGNDE: string;
+  CNTRCT_CNCLS_ENDDE: string;
+  HMPG_ADRES: string;
+  BSNS_MBY_NM: string;
+  MDHS_TELNO: string;
+  MVN_PREARNGE_YM: string;
+  PBLANC_URL: string;
+};
+
+export type LEFTOVER_DETAIL_REQUEST = {
+  page: number;
+  perPage: number;
+  cond: {
+    "HOUSE_SECD::EQ": null | string;
+  };
+  serviceKey: string;
+};
+
+export type PUBLIC_DETAIL_RESPONSE = {
+  HOUSE_MANAGE_NO: string;
+  PBLANC_NO: string;
+  HOUSE_NM: string;
+  HOUSE_SECD: string;
+  HOUSE_SECD_NM: string;
+  HOUSE_DETAIL_SECD: string;
+  HOUSE_DETAIL_SECD_NM: string;
+  SEARCH_HOUSE_SECD: string;
+  RCRIT_PBLANC_DE: string;
+  SUBSCRPT_RCEPT_BGNDE: string;
+  SUBSCRPT_RCEPT_ENDDE: string;
+  PRZWNER_PRESNATN_DE: string;
+  HSSPLY_ZIP: string;
+  HSSPLY_ADRES: string;
+  TOT_SUPLY_HSHLDCO: number;
+  CNTRCT_CNCLS_BGNDE: string;
+  CNTRCT_CNCLS_ENDDE: string;
+  HMPG_ADRES: string;
+  BSNS_MBY_NM: string;
+  MDHS_TELNO: string;
+  MVN_PREARNGE_YM: string;
+};
+
+export type PUBLIC_DETAIL_REQUEST = {
   page: number;
   perPage: number;
 };
