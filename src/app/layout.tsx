@@ -36,7 +36,7 @@ export default function RootLayout({
         ></script>
         <RootContainer>
           <Header />
-          <div style={{ paddingTop: "60px" }}>{children}</div>
+          <div>{children}</div>
         </RootContainer>
       </body>
     </html>
