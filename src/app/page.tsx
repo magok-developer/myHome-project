@@ -36,7 +36,7 @@ const Container = styled.div`
   align-items: center;
 
   background: no-repeat #526d80;
-  background-image: url("/images/main.jpg");
+  /* background-image: url("/images/main.jpg"); */
   background-size: 60%;
   background-position: right;
 
