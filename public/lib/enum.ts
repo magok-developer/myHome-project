@@ -20,23 +20,23 @@
  */
 
 export enum AREA_CODE {
-  SEOUL = 100,
-  GANGWON = 200,
-  DAEJEON = 300,
-  CHUNGNAM = 312,
-  SEJONG = 338,
-  CHUNGBUK = 360,
-  INCHEON = 400,
-  GYEONGGI = 410,
-  GWANGJU = 500,
-  JEONNAM = 513,
-  JEONBUK = 560,
-  BUSAN = 600,
-  GYEONGNAM = 621,
-  ULSAN = 680,
-  JEJU = 690,
-  DEAGU = 700,
-  GYEONGBUK = 712,
+  SEOUL = "서울",
+  GANGWON = "강원",
+  DAEJEON = "대전",
+  CHUNGNAM = "충남",
+  SEJONG = "세종",
+  CHUNGBUK = "충북",
+  INCHEON = "인천",
+  GYEONGGI = "경기",
+  GWANGJU = "광주",
+  JEONNAM = "전남",
+  JEONBUK = "전북",
+  BUSAN = "부산",
+  GYEONGNAM = "경남",
+  ULSAN = "울산",
+  JEJU = "제주",
+  DEAGU = "대구",
+  GYEONGBUK = "경북",
 }
 
 /**
@@ -57,4 +57,9 @@ export enum APPLICATION_STATUS {
   UPCOMING = "청약 접수 예정",
   OPEN = "청약 접수 중",
   CLOSED = "청약 접수 마감",
+}
+
+export enum LEFTOVER_HOUSE_CODE {
+  LEFTOVER = "04",
+  CANCEL = "06",
 }

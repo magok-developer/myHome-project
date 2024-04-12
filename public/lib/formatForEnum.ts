@@ -1,4 +1,4 @@
-import { AREA_CODE, HOUSE_CODE } from "./enum";
+import { AREA_CODE, HOUSE_CODE, LEFTOVER_HOUSE_CODE } from "./enum";
 
 export const formatForAreaCode = (status: AREA_CODE): string => {
   const returnStatus = new Map([
@@ -34,4 +34,13 @@ export const formatForHouseCode = (status: string): string => {
   ]);
 
   return returnStatus.get(status as HOUSE_CODE) ?? "";
+};
+
+export const formatForLeftoverCode = (status: string): string => {
+  const returnStatus = new Map([
+    [LEFTOVER_HOUSE_CODE.LEFTOVER, "무순위/잔여세대"],
+    [LEFTOVER_HOUSE_CODE.CANCEL, "계약취소주택"],
+  ]);
+
+  return returnStatus.get(status as LEFTOVER_HOUSE_CODE) ?? "";
 };

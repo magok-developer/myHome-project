@@ -1,4 +1,4 @@
-import { AREA_CODE } from "../lib/enum";
+import { AREA_CODE, HOUSE_CODE, LEFTOVER_HOUSE_CODE } from "../lib/enum";
 
 export const AREA_CODE_OPTIONS = [
   {
@@ -72,5 +72,43 @@ export const AREA_CODE_OPTIONS = [
   {
     value: AREA_CODE.GYEONGBUK,
     label: "경북",
+  },
+];
+
+export const HOUSE_CODE_OPTIONS = [
+  {
+    value: null,
+    label: "전체",
+  },
+  {
+    value: HOUSE_CODE.HOUSE,
+    label: "도시형생활주택",
+  },
+  {
+    value: HOUSE_CODE.OFFICETEL,
+    label: "오피스텔",
+  },
+  {
+    value: HOUSE_CODE.PRIVATE_RENTAL,
+    label: "민간임대",
+  },
+  {
+    value: HOUSE_CODE.PUBLIC_RENTAL,
+    label: "공공지원민간임대",
+  },
+];
+
+export const LEFTOVER_HOUSE_CODE_OPTIONS = [
+  {
+    value: null,
+    label: "전체",
+  },
+  {
+    value: LEFTOVER_HOUSE_CODE.LEFTOVER,
+    label: "무순위/잔여세대",
+  },
+  {
+    value: LEFTOVER_HOUSE_CODE.CANCEL,
+    label: "계약취소주택",
   },
 ];
