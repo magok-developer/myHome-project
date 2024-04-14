@@ -16,6 +16,7 @@ import {
 import { getEtcSalesInfoDetail } from "@/api/api";
 import { ETC_DETAIL_REQUEST } from "@/api/model";
 import EtcItem from "@/app/etc/components/EtcItem";
+import TopButton from "@/components/Button/TopButton";
 
 dotenv.config();
 
@@ -106,6 +107,7 @@ const Page = () => {
       ))}
       {isFetchingNextPage && <div>Loading...</div>}
       {!hasNextPage && !isLoading && <div>더이상 데이터가 없습니다.</div>}
+      <TopButton />
     </Container>
   );
 };

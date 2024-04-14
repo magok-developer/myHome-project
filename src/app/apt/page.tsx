@@ -13,6 +13,7 @@ import { AREA_CODE_OPTIONS } from "../../../public/static/static";
 import useChangeSelect from "@/components/hook/useChangeSelect";
 import Image from "next/image";
 import AptItem from "./components/AptItem";
+import TopButton from "@/components/Button/TopButton";
 
 dotenv.config();
 
@@ -110,6 +111,7 @@ const Page = () => {
       ))}
       {isFetchingNextPage && <div>Loading...</div>}
       {!hasNextPage && !isLoading && <div>더이상 데이터가 없습니다.</div>}
+      <TopButton />
     </Container>
   );
 };
@@ -117,6 +119,7 @@ const Page = () => {
 export default Page;
 
 const Container = styled.div`
+  position: relative;
   padding: 0 20px 20px 20px;
 `;
 

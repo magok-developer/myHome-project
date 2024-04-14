@@ -12,6 +12,7 @@ import { LEFTOVER_DETAIL_REQUEST } from "@/api/model";
 import SelectBox from "@/components/SelectBox/SelectBox";
 import { LEFTOVER_HOUSE_CODE_OPTIONS } from "../../../public/static/static";
 import LeftoverItem from "@/app/leftover/components/LeftoverItem";
+import TopButton from "@/components/Button/TopButton";
 
 dotenv.config();
 
@@ -109,6 +110,7 @@ const Page = () => {
       ))}
       {isFetchingNextPage && <div>Loading...</div>}
       {!hasNextPage && !isLoading && <div>더이상 데이터가 없습니다.</div>}
+      <TopButton />
     </Container>
   );
 };
