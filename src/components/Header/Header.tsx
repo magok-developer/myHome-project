@@ -1,16 +1,11 @@
-"use client";
-
 import { color } from "@/styles/color";
+import styled from "@emotion/styled";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import styled from "@emotion/styled";
-import { usePathname } from "next/navigation";
 
 const menuData = [
   {
     label: "분양 정보",
-    path: "/apt",
     subMenu: [
       {
         label: "아파트",
@@ -32,7 +27,6 @@ const menuData = [
   },
   {
     label: "경쟁률",
-    path: "/competition",
     subMenu: [
       {
         label: "아파트",
@@ -43,126 +37,93 @@ const menuData = [
 ];
 
 const Header = () => {
-  const path = usePathname();
-  const [openMenuIndex, setOpenMenuIndex] = useState(null);
-
-  const handleMenuClick = (index: any) => {
-    setOpenMenuIndex(openMenuIndex === index ? null : index);
-  };
-
-  const handleSubMenuClick = () => {
-    setOpenMenuIndex(null);
-  };
-
   return (
-    <Container isHomePage={path === "/"}>
+    <Container>
       <Link href='/'>
         <Image
-          src={
-            path === "/"
-              ? "images/icons/home-smile-white.svg"
-              : "/images/icons/home-smile.svg"
-          }
+          src='images/icons/home-smile.svg'
           width={30}
           height={30}
           alt='home'
         />
       </Link>
 
-      <MenuList>
-        {menuData.map((menu, index) => (
-          <MenuItem key={index}>
-            <MenuLabel
-              onClick={() => handleMenuClick(index)}
-              className={openMenuIndex === index ? "active" : ""}
-            >
-              {menu.label}
-            </MenuLabel>
-            {openMenuIndex === index && (
-              <SubMenu>
-                {menu.subMenu.map((subMenu, subIndex) => (
-                  <Link href={subMenu.path} key={subIndex}>
-                    <div onClick={handleSubMenuClick} className='subMenuItem'>
-                      {subMenu.label}
-                    </div>
-                  </Link>
-                ))}
-              </SubMenu>
-            )}
-          </MenuItem>
+      <Menu>
+        {menuData.map((item) => (
+          <div className='main-menu'>
+            {item.label}
+            <div className='sub-menu'>
+              {item.subMenu.map((sub) => (
+                <Link href={sub.path}>
+                  <div className='sub-menu-label'>{sub.label}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
         ))}
-      </MenuList>
+      </Menu>
 
-      <div></div>
+      <div />
     </Container>
   );
 };
 
 export default Header;
 
-const Container = styled.div<{ isHomePage: boolean }>`
+const Container = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  height: 60px;
-  padding: 0 40px;
+  padding: 30px 0;
   display: flex;
-  align-items: center;
+
   justify-content: space-between;
 
   box-sizing: border-box;
   z-index: 3;
-
-  background: ${({ isHomePage }) =>
-    isHomePage ? "#526D80" : color.secondary.white};
-  color: ${({ isHomePage }) =>
-    isHomePage ? color.secondary.white : color.secondary.black};
-
-  /* 추가된 부분 */
-  position: relative;
 `;
 
-const MenuList = styled.div`
+const Menu = styled.div`
   display: flex;
-  gap: 30px;
-`;
+  gap: 40px;
 
-const MenuItem = styled.div`
-  position: relative;
-`;
-
-const MenuLabel = styled.div`
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  &.active {
-    // 활성화된 메뉴에 대한 스타일링
-
-    color: ${color.blue.blue};
-  }
-`;
-
-const SubMenu = styled.div`
-  width: 120px;
-  text-align: center;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: absolute;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px;
-  background-color: ${color.secondary.white};
-  border: 1px solid ${color.blue.blue};
-  border-radius: 4px;
-
-  .subMenuItem {
+  .main-menu {
+    position: relative;
+    height: 30px;
     cursor: pointer;
-    color: ${color.secondary.black};
+    font-weight: bold;
+  }
+  .main-menu:hover {
+    color: ${color.main.deepGreen};
+    border-bottom: 2px solid ${color.main.deepGreen};
+  }
+
+  .main-menu:hover .sub-menu {
+    display: flex;
+  }
+  .sub-menu {
+    cursor: default;
+    width: 200%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    border-radius: 8px;
+    padding: 18px 10px;
+    top: 25px;
+    left: -70%;
+    position: absolute;
+  }
+
+  .sub-menu-label {
+    font-size: 12px;
+    cursor: pointer;
+    color: black;
+
     &:hover {
-      color: ${color.blue.blue};
+      color: ${color.main.deepGreen};
     }
   }
 `;

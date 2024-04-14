@@ -3,17 +3,19 @@
 import { color } from "@/styles/color";
 import Image from "next/image";
 import styled from "@emotion/styled";
+import Header from "@/components/Header/Header";
 
 const Page = () => {
   return (
     <Container>
+      <Header />
       <Image src='/images/House.png' width={200} height={200} alt='main' />
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           gap: "5px",
-          color: color.yellow.yellow,
+          color: color.main.deepGreen,
         }}
       >
         <div
@@ -31,19 +33,18 @@ export default Page;
 
 const Container = styled.div`
   height: 605px;
-  padding-left: 10%;
+  padding: 0 40px;
   display: flex;
   align-items: center;
 
-  background: no-repeat #526d80;
-  /* background-image: url("/images/main.jpg"); */
+  background: ${color.main.white};
   background-size: 60%;
   background-position: right;
 
   .text {
     font-size: 24px;
     font-weight: bold;
-    color: ${color.secondary.white};
+    color: ${color.main.green};
     animation: move 2s infinite;
   }
   @keyframes move {
