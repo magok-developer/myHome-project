@@ -22,12 +22,12 @@ export default Button;
 
 const COLOR_TYPE = {
   ["primary"]: {
-    backgroundColor: `${color.blue.skyBlue}`,
-    color: `${color.secondary.white}`,
+    backgroundColor: `${color.main.green}`,
+    color: `${color.main.white}`,
   },
   ["secondary"]: {
     backgroundColor: `${color.yellow.lemonYellow}`,
-    color: `${color.secondary.green}`,
+    color: `${color.main.green}`,
   },
 };
 
@@ -42,7 +42,9 @@ const Container = styled.div<BUTTON_STYLE_PROPS>`
   cursor: pointer;
   &:hover {
     background-color: ${({ variant }) =>
-      variant?.includes("primary") ? color.blue.navy : color.yellow.yellow};
+      variant?.includes("primary")
+        ? color.main.deepGreen
+        : color.yellow.yellow};
     transition: 0.2s;
   }
 `;

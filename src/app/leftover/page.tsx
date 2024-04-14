@@ -13,6 +13,7 @@ import SelectBox from "@/components/SelectBox/SelectBox";
 import { LEFTOVER_HOUSE_CODE_OPTIONS } from "../../../public/static/static";
 import LeftoverItem from "@/app/leftover/components/LeftoverItem";
 import TopButton from "@/components/Button/TopButton";
+import { color } from "@/styles/color";
 
 dotenv.config();
 
@@ -78,13 +79,24 @@ const Page = () => {
   return (
     <Container>
       <Title>
-        <Image
-          src='/images/icons/building.svg'
-          width={24}
-          height={24}
-          alt='icon'
-        />
-        아파트 무순위, 잔여 세대 분양 정보
+        <div
+          style={{
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: color.main.deepGreen,
+          }}
+        >
+          분양 정보
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Image
+            src='/images/icons/building.svg'
+            width={24}
+            height={24}
+            alt='icon'
+          />
+          아파트 무순위, 잔여 세대 분양 정보
+        </div>
       </Title>
       <FilterWrap>
         <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
@@ -123,13 +135,14 @@ const Container = styled.div`
 
 const Title = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
-  margin: 50px 0;
+  margin: 30px 0;
 `;
 
 const FilterWrap = styled.div`

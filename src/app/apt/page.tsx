@@ -14,6 +14,8 @@ import useChangeSelect from "@/components/hook/useChangeSelect";
 import Image from "next/image";
 import AptItem from "./components/AptItem";
 import TopButton from "@/components/Button/TopButton";
+import NavBar from "@/components/NavBar/NavBar";
+import { color } from "@/styles/color";
 
 dotenv.config();
 
@@ -79,14 +81,26 @@ const Page = () => {
   return (
     <Container>
       <Title>
-        <Image
-          src='/images/icons/building.svg'
-          width={24}
-          height={24}
-          alt='icon'
-        />
-        아파트 분양 정보
+        <div
+          style={{
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: color.main.deepGreen,
+          }}
+        >
+          분양 정보
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Image
+            src='/images/icons/building.svg'
+            width={24}
+            height={24}
+            alt='icon'
+          />
+          아파트
+        </div>
       </Title>
+
       <FilterWrap>
         <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
           <div style={{ fontSize: "14px", fontWeight: "bold" }}>공급 지역</div>
@@ -125,13 +139,14 @@ const Container = styled.div`
 
 const Title = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
-  margin: 50px 0;
+  margin: 30px 0;
 `;
 
 const FilterWrap = styled.div`

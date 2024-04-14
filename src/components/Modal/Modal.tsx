@@ -50,7 +50,7 @@ const Content = styled.div`
 
   border: 1px solid ${color.yellow.yellow};
   border-radius: 8px;
-  background-color: ${color.secondary.white};
+  background-color: ${color.main.white};
 
   .close {
     position: absolute;

@@ -137,7 +137,7 @@ const OptionWrapper = styled.ul<any>`
     box-sizing: border-box;
     cursor: pointer;
 
-    background-color: ${color.secondary.white};
+    background-color: ${color.main.white};
   }
   li:hover {
     background: ${color.yellow.yellow};

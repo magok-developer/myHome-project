@@ -1,4 +1,9 @@
 export const color = {
+  main: {
+    green: "#2BAE66",
+    white: "#FCF6F5",
+    deepGreen: "#1a7a4c",
+  },
   blue: {
     navy: "#234E70",
     blue: "#00539C",

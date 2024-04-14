@@ -17,6 +17,7 @@ import { getEtcSalesInfoDetail } from "@/api/api";
 import { ETC_DETAIL_REQUEST } from "@/api/model";
 import EtcItem from "@/app/etc/components/EtcItem";
 import TopButton from "@/components/Button/TopButton";
+import { color } from "@/styles/color";
 
 dotenv.config();
 
@@ -80,9 +81,26 @@ const Page = () => {
   return (
     <Container>
       <Title>
-        <Image src='/images/icons/home.svg' width={24} height={24} alt='icon' />
-        오피스텔 / 도시형생활주택 / 민간임대 분양 정보
+        <div
+          style={{
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: color.main.deepGreen,
+          }}
+        >
+          분양 정보
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Image
+            src='/images/icons/home.svg'
+            width={24}
+            height={24}
+            alt='icon'
+          />
+          오피스텔 / 도시형생활주택 / 민간임대 분양 정보
+        </div>
       </Title>
+
       <FilterWrap>
         <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
           <div style={{ fontSize: "14px", fontWeight: "bold" }}>주택 구분</div>
@@ -120,13 +138,14 @@ const Container = styled.div`
 
 const Title = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
-  margin: 50px 0;
+  margin: 30px 0;
 `;
 
 const FilterWrap = styled.div`

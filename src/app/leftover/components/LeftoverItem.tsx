@@ -53,7 +53,7 @@ const LeftoverItem = ({
       textColor = color.blue.blue;
       break;
     case APPLICATION_STATUS.OPEN:
-      textColor = color.secondary.green;
+      textColor = color.main.green;
       break;
     case APPLICATION_STATUS.CLOSED:
       textColor = color.secondary.red;
@@ -63,7 +63,7 @@ const LeftoverItem = ({
   return (
     <>
       <Container>
-        <div style={{ width: "550px", height: "350px" }}>
+        <div style={{ width: "450px", height: "350px" }}>
           <MapComponent address={data.HSSPLY_ADRES} />
         </div>
         <Content>
@@ -103,7 +103,7 @@ const LeftoverItem = ({
             style={{
               fontWeight: "bold",
               fontSize: "14px",
-              color: color.secondary.green,
+              color: color.main.green,
               marginTop: "10px",
               display: "flex",
               alignItems: "center",
@@ -194,7 +194,7 @@ const LeftoverItem = ({
                     style={{
                       fontWeight: "bold",
                       fontSize: "14px",
-                      color: color.secondary.green,
+                      color: color.main.green,
                       marginTop: "10px",
                       display: "flex",
                       alignItems: "center",
@@ -329,7 +329,7 @@ const LeftoverItem = ({
         </Modal>
       </Container>
       <div
-        style={{ height: "1px", width: "100%", background: color.blue.skyBlue }}
+        style={{ height: "1px", width: "100%", background: color.main.green }}
       />
     </>
   );
@@ -354,7 +354,7 @@ const Content = styled.div`
     font-weight: bold;
     cursor: pointer;
     &:hover {
-      color: ${color.blue.navy};
+      color: ${color.main.deepGreen};
     }
   }
   .address {
@@ -380,7 +380,7 @@ const ModalContainer = styled.div`
   padding: 50px;
 
   h5 {
-    color: ${color.blue.navy};
+    color: ${color.main.deepGreen};
   }
 
   .line {
