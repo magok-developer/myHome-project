@@ -7,10 +7,10 @@ import styled from "@emotion/styled";
 
 import { APT_COMPETITION_RESPONSE, APT_DETAIL_RESPONSE } from "@/api/model";
 
-import { APPLICATION_STATUS } from "../../../../public/lib/enum";
 import MapComponent from "@/components/Map/Map";
 import Button from "@/components/Button/Button";
 import Modal from "@/components/Modal/Modal";
+import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
 
 type Props = {
   id: string;
@@ -380,7 +380,7 @@ const AptCompetitionItem = ({ data }: Props) => {
                 <div style={{ display: "flex", gap: "8px" }}>
                   <Button text='청약홈으로 이동' variant='secondary' />
 
-                  <Button text='경쟁률 보러가기' variant='primary' />
+                  {/* <Button text='경쟁률 보러가기' variant='primary' /> */}
                 </div>
               </div>
             </div>
