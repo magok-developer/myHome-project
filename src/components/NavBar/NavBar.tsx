@@ -1,12 +1,17 @@
-import { color } from "@/styles/color";
+"use client";
+
 import styled from "@emotion/styled";
+import { color } from "@/styles/color";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const menuData = [
   {
     label: "분양 정보",
+    path: "/info",
+    height: 125,
     subMenu: [
       {
         label: "아파트",
@@ -28,60 +33,113 @@ const menuData = [
   },
   {
     label: "경쟁률",
+    path: "/competition",
+    height: 20,
     subMenu: [
       {
-        label: "아파트",
+        label: "아파트 경쟁률",
         path: "/aptCompetition",
       },
     ],
   },
 ];
 
-const NavBar = () => {
-  const [activeMenu, setActiveMenu] = useState(null);
+const AdminSidebar = () => {
+  const path = usePathname();
+  const route = useRouter();
+  const [activeMenu, setActiveMenu] = useState(path);
+  const [openMenu, setOpenMenu] = useState(path);
 
-  const handleClickMenu = (index: any) => {
-    setActiveMenu(activeMenu === index ? null : index);
+  const handleClickMenu = (path: string) => {
+    setActiveMenu(path);
+    setOpenMenu("");
   };
+
+  const handleClickOpen = (path: string) => {
+    setOpenMenu(path);
+  };
+
+  const isSubActive = (submenuPath: string) => {
+    return path.includes(submenuPath);
+  };
+
   return (
     <Container>
-      <Link href='/'>
-        <Image
-          src='images/icons/home-smile.svg'
-          width={30}
-          height={30}
-          alt='home'
-        />
-      </Link>
+      <div className='wrap'>
+        <Link href={"/"}>
+          <Image
+            className='logo'
+            src={"/images/icons/home-smile.svg"}
+            alt='logo'
+            width={40}
+            height={40}
+          />
+        </Link>
 
-      <Menu>
-        {menuData.map((item, index) => (
-          <MenuWrap
-            key={index}
-            className='main-menu'
-            onClick={() => handleClickMenu(index)}
-          >
-            {item.label}
-            <div className={`sub-menu ${activeMenu === index ? "active" : ""}`}>
-              {item.subMenu.map((sub, subIndex) => (
-                <Link key={subIndex} href={sub.path}>
-                  <div className='sub-menu-label'>{sub.label}</div>
-                </Link>
-              ))}
-            </div>
-          </MenuWrap>
-        ))}
-      </Menu>
+        <MenuContainer>
+          {menuData.map((item) => {
+            const { subMenu } = item;
+            const isActive = item.path;
+            const openSub = item.path === openMenu;
+
+            const arrowPath = `/images/icons/${
+              isActive ? (openSub ? "arrow_up_green" : "arrow_down_green") : ""
+            }.svg`;
+
+            return (
+              <li
+                key={item.path}
+                onClick={
+                  subMenu
+                    ? () => handleClickOpen(item.path)
+                    : () => handleClickMenu(item.path)
+                }
+              >
+                <MenuWrap>
+                  <span className='menuLabel'>{item.label}</span>
+                  <Image src={arrowPath} alt={"arrow"} width={16} height={16} />
+                </MenuWrap>
+
+                {subMenu && (
+                  <StyledMenu height={item.height} openSub={openSub}>
+                    {subMenu?.map((subMenu) => {
+                      const isSubMenuItemActive = isSubActive(
+                        item.path + subMenu.path
+                      );
+
+                      return (
+                        <Link
+                          href={item.path + subMenu.path}
+                          key={subMenu.path}
+                        >
+                          <li
+                            className={
+                              isSubMenuItemActive ? "active" : "common"
+                            }
+                          >
+                            {subMenu.label}
+                          </li>
+                        </Link>
+                      );
+                    })}
+                  </StyledMenu>
+                )}
+              </li>
+            );
+          })}
+        </MenuContainer>
+      </div>
     </Container>
   );
 };
 
-export default NavBar;
+export default AdminSidebar;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   width: 130px;
   position: fixed;
   top: 10px;
@@ -92,45 +150,68 @@ const Container = styled.div`
   border-radius: 8px;
   padding-top: 30px;
   box-sizing: border-box;
-`;
 
-const Menu = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-top: 50px;
-
-  .sub-menu {
-    display: none;
+  .wrap {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    flex: 1;
+    z-index: 1;
   }
+`;
 
-  .sub-menu.active {
-    display: flex;
-  }
+const MenuContainer = styled.ul`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
-  .sub-menu-label {
-    font-size: 12px;
+  gap: 30px;
+
+  margin-top: 61px;
+
+  .menuLabel {
+    color: ${color.main.deepGreen};
     cursor: pointer;
-    color: black;
+    font-size: 16px;
+    font-weight: bold;
+  }
 
+  .active {
+    color: ${color.main.green};
+    font-weight: bold;
+  }
+  .common {
+    color: #909090;
     &:hover {
-      color: ${color.main.deepGreen};
+      color: ${color.main.green};
     }
   }
 `;
 
 const MenuWrap = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+`;
+
+const StyledMenu = styled.ul<{ openSub: boolean; height: number }>`
+  display: flex;
+  align-items: center;
   flex-direction: column;
+  justify-content: flex-end;
   gap: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  &:hover {
-    color: ${color.main.deepGreen};
+
+  height: ${({ height, openSub }) => (openSub ? height + 13 : 0)}px;
+  overflow: hidden;
+  transition: height 0.2s ease-in;
+  transition-property: display 0.2s ease-in;
+
+  li {
+    color: ${color.main.green};
+    font-size: 14px;
+    font-weight: 400;
+
+    box-sizing: border-box;
   }
 `;
