@@ -322,7 +322,7 @@ const LeftoverItem = ({
                   <Link href={data.PBLANC_URL} target='_blank'>
                     <Button text='청약홈으로 이동' variant='secondary' />
                   </Link>
-                  <Button text='경쟁률 보러가기' variant='primary' />
+                  {/* <Button text='경쟁률 보러가기' variant='primary' /> */}
                 </div>
               </div>
             </div>

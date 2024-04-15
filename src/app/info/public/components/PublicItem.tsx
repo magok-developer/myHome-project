@@ -316,7 +316,7 @@ const PublicItem = ({
                 }}
               >
                 <div style={{ display: "flex", gap: "8px" }}>
-                  <Button text='경쟁률 보러가기' variant='primary' />
+                  {/* <Button text='경쟁률 보러가기' variant='primary' /> */}
                 </div>
               </div>
             </div>

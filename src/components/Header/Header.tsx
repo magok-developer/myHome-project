@@ -74,7 +74,7 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 30px 0;
+  padding: 30px;
   display: flex;
 
   justify-content: space-between;

@@ -37,7 +37,7 @@ const menuData = [
     height: 20,
     subMenu: [
       {
-        label: "아파트 경쟁률",
+        label: "아파트",
         path: "/aptCompetition",
       },
     ],
