@@ -9,19 +9,19 @@ const menuData = [
     subMenu: [
       {
         label: "아파트",
-        path: "/apt",
+        path: "/info/apt",
       },
       {
         label: "무순위/잔여세대",
-        path: "/leftover",
+        path: "/info/leftover",
       },
       {
         label: "아파트 외",
-        path: "/etc",
+        path: "/info/etc",
       },
       {
         label: "공공지원 민간 임대",
-        path: "/public",
+        path: "/info/public",
       },
     ],
   },
@@ -30,7 +30,7 @@ const menuData = [
     subMenu: [
       {
         label: "아파트",
-        path: "/aptCompetition",
+        path: "/competition/aptCompetition",
       },
     ],
   },
