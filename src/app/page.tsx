@@ -33,9 +33,10 @@ export default Page;
 
 const Container = styled.div`
   height: 605px;
-  padding: 0 40px;
+
   display: flex;
   align-items: center;
+  justify-content: center;
 
   background: ${color.main.white};
   background-size: 60%;
