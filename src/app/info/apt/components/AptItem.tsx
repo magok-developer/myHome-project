@@ -8,10 +8,11 @@ import styled from "@emotion/styled";
 import { APT_DETAIL_RESPONSE } from "@/api/model";
 
 import Link from "next/link";
-import { APPLICATION_STATUS } from "../../../../public/lib/enum";
+
 import MapComponent from "@/components/Map/Map";
 import Button from "@/components/Button/Button";
 import Modal from "@/components/Modal/Modal";
+import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
 
 type Props = {
   id: string;

@@ -4,13 +4,11 @@ import { color } from "@/styles/color";
 import Image from "next/image";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import Modal from "../../../components/Modal/Modal";
-import { LEFTOVER_DETAIL_RESPONSE, PUBLIC_DETAIL_RESPONSE } from "@/api/model";
-import MapComponent from "../../../components/Map/Map";
-import { APPLICATION_STATUS } from "../../../../public/lib/enum";
-import Button from "../../../components/Button/Button";
-import Link from "next/link";
-import { formatForLeftoverCode } from "../../../../public/lib/formatForEnum";
+import { PUBLIC_DETAIL_RESPONSE } from "@/api/model";
+import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
+import MapComponent from "@/components/Map/Map";
+import Modal from "@/components/Modal/Modal";
+import Button from "@/components/Button/Button";
 
 type Props = {
   id: string;
@@ -318,9 +316,6 @@ const PublicItem = ({
                 }}
               >
                 <div style={{ display: "flex", gap: "8px" }}>
-                  {/* <Link href={data.PBLANC_URL} target='_blank'>
-                    <Button text='청약홈으로 이동' variant='secondary' />
-                  </Link> */}
                   <Button text='경쟁률 보러가기' variant='primary' />
                 </div>
               </div>

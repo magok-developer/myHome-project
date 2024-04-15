@@ -4,13 +4,14 @@ import { color } from "@/styles/color";
 import Image from "next/image";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import Modal from "../../../components/Modal/Modal";
-import { ETC_DETAIL_RESPONSE } from "@/api/model";
-import MapComponent from "../../../components/Map/Map";
-import { formatForHouseCode } from "../../../../public/lib/formatForEnum";
-import { APPLICATION_STATUS } from "../../../../public/lib/enum";
-import Button from "../../../components/Button/Button";
+
 import Link from "next/link";
+import { ETC_DETAIL_RESPONSE } from "@/api/model";
+import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
+import MapComponent from "@/components/Map/Map";
+import { formatForHouseCode } from "../../../../../public/lib/formatForEnum";
+import Modal from "@/components/Modal/Modal";
+import Button from "@/components/Button/Button";
 
 type Props = {
   id: string;

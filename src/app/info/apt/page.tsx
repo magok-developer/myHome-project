@@ -1,41 +1,44 @@
 "use client";
 
-import styled from "@emotion/styled";
-import Image from "next/image";
-import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-import useChangeSelect from "@/components/hook/useChangeSelect";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { rest } from "@/api/rest";
-import {
-  getLeftoverSalesInfoDetail,
-  getPublicSalesInfoDetail,
-} from "@/api/api";
-import { LEFTOVER_DETAIL_REQUEST, PUBLIC_DETAIL_REQUEST } from "@/api/model";
+import { getAptSalesInfoDetail } from "@/api/api";
+import { APT_DETAIL_REQUEST } from "@/api/model";
+import dotenv from "dotenv";
+
+import styled from "@emotion/styled";
 import SelectBox from "@/components/SelectBox/SelectBox";
-import { LEFTOVER_HOUSE_CODE_OPTIONS } from "../../../public/static/static";
-import PublicItem from "./components/PublicItem";
+
+import useChangeSelect from "@/components/hook/useChangeSelect";
+import Image from "next/image";
+import AptItem from "./components/AptItem";
 import TopButton from "@/components/Button/TopButton";
 import { color } from "@/styles/color";
+import { AREA_CODE_OPTIONS } from "../../../../public/static/static";
 
 dotenv.config();
 
 const initialParams = {
   page: 1,
   perPage: 10,
+  cond: {
+    "SUBSCRPT_AREA_CODE_NM::EQ": null,
+  },
   serviceKey: decodeURIComponent(process.env.NEXT_PUBLIC_API_KEY ?? ""),
 };
 
 const Page = () => {
   const [params, setParams] = useState(initialParams);
+  const { select, onChange: onChangeSelect } = useChangeSelect(null);
   const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: [rest.get.publicSalesInfoDetail, params],
+      queryKey: [rest.get.aptSalesInfoDetail, params],
       queryFn: ({ pageParam = initialParams.page }) =>
-        getPublicSalesInfoDetail({
+        getAptSalesInfoDetail({
           ...params,
           page: pageParam,
-        } as PUBLIC_DETAIL_REQUEST),
+        } as APT_DETAIL_REQUEST),
       getNextPageParam: (lastPage, allPages) => {
         // 마지막 페이지가 모든 페이지 중 마지막 페이지인지 확인
         if (lastPage.length < initialParams.perPage) {
@@ -45,6 +48,15 @@ const Page = () => {
       },
       initialPageParam: initialParams.page, // 초기 페이지 매개변수 설정
     });
+
+  useEffect(() => {
+    setParams({
+      ...params,
+      cond: {
+        "SUBSCRPT_AREA_CODE_NM::EQ": select,
+      },
+    });
+  }, [select]);
 
   const handleScroll = () => {
     // 스크롤 이벤트 핸들러
@@ -80,19 +92,30 @@ const Page = () => {
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Image
-            src='/images/icons/home.svg'
+            src='/images/icons/building.svg'
             width={24}
             height={24}
             alt='icon'
           />
-          공공지원 민간 임대 분양 정보
+          아파트
         </div>
       </Title>
+
+      <FilterWrap>
+        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+          <div style={{ fontSize: "14px", fontWeight: "bold" }}>공급 지역</div>
+          <SelectBox
+            options={AREA_CODE_OPTIONS}
+            value={select}
+            onChange={onChangeSelect}
+          />
+        </div>
+      </FilterWrap>
 
       {data?.pages.map((pageData, index) => (
         <React.Fragment key={index}>
           {pageData.map((item, index) => (
-            <PublicItem
+            <AptItem
               key={`${item.HOUSE_MANAGE_NO}_${index}`}
               id={item.HOUSE_MANAGE_NO}
               data={item}
@@ -110,6 +133,7 @@ const Page = () => {
 export default Page;
 
 const Container = styled.div`
+  position: relative;
   padding: 0 20px 20px 20px;
 `;
 

@@ -4,13 +4,14 @@ import { color } from "@/styles/color";
 import Image from "next/image";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import Modal from "../../../components/Modal/Modal";
+
 import { LEFTOVER_DETAIL_RESPONSE } from "@/api/model";
-import MapComponent from "../../../components/Map/Map";
-import { APPLICATION_STATUS } from "../../../../public/lib/enum";
-import Button from "../../../components/Button/Button";
+
 import Link from "next/link";
-import { formatForLeftoverCode } from "../../../../public/lib/formatForEnum";
+import MapComponent from "@/components/Map/Map";
+import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
+import Modal from "@/components/Modal/Modal";
+import Button from "@/components/Button/Button";
 
 type Props = {
   id: string;

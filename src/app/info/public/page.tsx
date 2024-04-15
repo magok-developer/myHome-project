@@ -1,21 +1,16 @@
 "use client";
 
-import { rest } from "@/api/rest";
-import SelectBox from "@/components/SelectBox/SelectBox";
-import useChangeSelect from "@/components/hook/useChangeSelect";
 import styled from "@emotion/styled";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import dotenv from "dotenv";
 import Image from "next/image";
+import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-import {
-  AREA_CODE_OPTIONS,
-  HOUSE_CODE_OPTIONS,
-} from "../../../public/static/static";
 
-import { getEtcSalesInfoDetail } from "@/api/api";
-import { ETC_DETAIL_REQUEST } from "@/api/model";
-import EtcItem from "@/app/etc/components/EtcItem";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { rest } from "@/api/rest";
+import { getPublicSalesInfoDetail } from "@/api/api";
+import { PUBLIC_DETAIL_REQUEST } from "@/api/model";
+
+import PublicItem from "./components/PublicItem";
 import TopButton from "@/components/Button/TopButton";
 import { color } from "@/styles/color";
 
@@ -24,21 +19,19 @@ dotenv.config();
 const initialParams = {
   page: 1,
   perPage: 10,
-  cond: { "SEARCH_HOUSE_SECD::EQ": null },
   serviceKey: decodeURIComponent(process.env.NEXT_PUBLIC_API_KEY ?? ""),
 };
 
 const Page = () => {
   const [params, setParams] = useState(initialParams);
-  const { select, onChange: onChangeSelect, setSelect } = useChangeSelect(null);
   const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: [rest.get.etcSalesInfoDetail, params],
+      queryKey: [rest.get.publicSalesInfoDetail, params],
       queryFn: ({ pageParam = initialParams.page }) =>
-        getEtcSalesInfoDetail({
+        getPublicSalesInfoDetail({
           ...params,
           page: pageParam,
-        } as ETC_DETAIL_REQUEST),
+        } as PUBLIC_DETAIL_REQUEST),
       getNextPageParam: (lastPage, allPages) => {
         // 마지막 페이지가 모든 페이지 중 마지막 페이지인지 확인
         if (lastPage.length < initialParams.perPage) {
@@ -48,15 +41,6 @@ const Page = () => {
       },
       initialPageParam: initialParams.page, // 초기 페이지 매개변수 설정
     });
-
-  useEffect(() => {
-    setParams({
-      ...params,
-      cond: {
-        "SEARCH_HOUSE_SECD::EQ": select,
-      },
-    });
-  }, [select]);
 
   const handleScroll = () => {
     // 스크롤 이벤트 핸들러
@@ -97,25 +81,14 @@ const Page = () => {
             height={24}
             alt='icon'
           />
-          오피스텔 / 도시형생활주택 / 민간임대 분양 정보
+          공공지원 민간 임대 분양 정보
         </div>
       </Title>
-
-      <FilterWrap>
-        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-          <div style={{ fontSize: "14px", fontWeight: "bold" }}>주택 구분</div>
-          <SelectBox
-            options={HOUSE_CODE_OPTIONS}
-            value={select}
-            onChange={onChangeSelect}
-          />
-        </div>
-      </FilterWrap>
 
       {data?.pages.map((pageData, index) => (
         <React.Fragment key={index}>
           {pageData.map((item, index) => (
-            <EtcItem
+            <PublicItem
               key={`${item.HOUSE_MANAGE_NO}_${index}`}
               id={item.HOUSE_MANAGE_NO}
               data={item}

@@ -29,7 +29,7 @@ const TopButton = () => {
 
   return toggleBtn ? (
     <Container onClick={goToTop}>
-      <Image src='images/icons/arrow-up.svg' width={20} height={20} alt='up' />
+      <Image src='/images/icons/arrow-up.svg' width={20} height={20} alt='up' />
     </Container>
   ) : null;
 };
