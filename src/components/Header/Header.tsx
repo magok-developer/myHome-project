@@ -49,12 +49,12 @@ const Header = () => {
       </Link>
 
       <Menu>
-        {menuData.map((item) => (
-          <div className='main-menu'>
+        {menuData.map((item, index) => (
+          <div className='main-menu' key={`${index}_${item.label}`}>
             {item.label}
             <div className='sub-menu'>
-              {item.subMenu.map((sub) => (
-                <Link href={sub.path}>
+              {item.subMenu.map((sub, index) => (
+                <Link href={sub.path} key={`${index}_${sub.label}`}>
                   <div className='sub-menu-label'>{sub.label}</div>
                 </Link>
               ))}

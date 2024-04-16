@@ -140,7 +140,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 130px;
+  width: 140px;
   position: fixed;
   top: 10px;
   height: 97vh;

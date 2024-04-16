@@ -20,7 +20,7 @@ const RootContainer = ({ children }: any) => {
       <QueryClientProvider client={queryClient}>
         <RootProvider>
           {path !== "/" ? <NavBar /> : <></>}
-          <div style={{ paddingLeft: path !== "/" ? "150px" : 0 }}>
+          <div style={{ paddingLeft: path !== "/" ? "160px" : 0 }}>
             {children}
           </div>
         </RootProvider>
