@@ -6,6 +6,7 @@ import "../../public/reset.css";
 import { color } from "@/styles/color";
 import NavBar from "@/components/NavBar/NavBar";
 import { usePathname } from "next/navigation";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "My Home",
@@ -31,10 +32,9 @@ export default function RootLayout({
         }}
         className={noto.className}
       >
-        <script
+        <Script
           type='text/javascript'
           src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&libraries=services`}
-          async
         />
         <RootContainer>
           <div>{children}</div>
