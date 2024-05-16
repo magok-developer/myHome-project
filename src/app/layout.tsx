@@ -4,7 +4,6 @@ import RootContainer from "@/components/RootContainer";
 import type { Metadata } from "next";
 import "../../public/reset.css";
 import { color } from "@/styles/color";
-
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -31,9 +30,6 @@ export default function RootLayout({
         }}
         className={noto.className}
       >
-        <Script
-          src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&libraries=services`}
-        />
         <RootContainer>
           <div>{children}</div>
         </RootContainer>

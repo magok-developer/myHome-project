@@ -18,11 +18,7 @@ type Props = {
   id: string;
   data: APT_DETAIL_RESPONSE;
 };
-const AptItem = ({
-  id,
-
-  data,
-}: Props) => {
+const AptItem = ({ data }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
