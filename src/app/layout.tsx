@@ -32,7 +32,7 @@ export default function RootLayout({
         }}
         className={noto.className}
       >
-        <Script
+        <script
           type='text/javascript'
           src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&libraries=services`}
         />
