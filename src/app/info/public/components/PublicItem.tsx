@@ -62,7 +62,7 @@ const PublicItem = ({
     <>
       <Container>
         <div style={{ width: "450px", height: "350px" }}>
-          <MapComponent address={data.HSSPLY_ADRES} />
+          <MapComponent address={data.HSSPLY_ADRES} index='page' />
         </div>
         <Content>
           <div
@@ -159,169 +159,172 @@ const PublicItem = ({
             </div>
           </DateWrap>
         </Content>
-        <Modal visible={isModalOpen} onClose={closeModal}>
-          <ModalContainer>
-            <LeftSection>
-              <h3>{data.HOUSE_NM}</h3>
-              <div
-                style={{
-                  fontSize: "14px",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  src='/images/icons/location.svg'
-                  width={16}
-                  height={16}
-                  alt='icon'
-                  style={{ marginRight: "4px" }}
-                />
-                ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
-              </div>
+        {isModalOpen && (
+          <Modal visible={isModalOpen} onClose={closeModal}>
+            <ModalContainer>
+              <LeftSection>
+                <h3>{data.HOUSE_NM}</h3>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    src='/images/icons/location.svg'
+                    width={16}
+                    height={16}
+                    alt='icon'
+                    style={{ marginRight: "4px" }}
+                  />
+                  ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
+                </div>
 
-              <div style={{ width: "90%", height: "70%" }}>
-                <MapComponent address={data.HSSPLY_ADRES} />
-              </div>
-            </LeftSection>
-            <div className='line' />
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div style={{ display: "flex" }}>
-                <RightSection>
-                  <div
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "14px",
-                      color: color.main.green,
-                      marginTop: "10px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <Image
-                      src='/images/icons/home.svg'
-                      width={16}
-                      height={16}
-                      alt='icon'
-                    />
-                    {data.HOUSE_SECD_NM}
-                  </div>
+                <div style={{ width: "90%", height: "70%" }}>
+                  <MapComponent address={data.HSSPLY_ADRES} index='modal' />
+                </div>
+              </LeftSection>
+              <div className='line' />
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex" }}>
+                  <RightSection>
+                    <div
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "14px",
+                        color: color.main.green,
+                        marginTop: "10px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                      }}
+                    >
+                      <Image
+                        src='/images/icons/home.svg'
+                        width={16}
+                        height={16}
+                        alt='icon'
+                      />
+                      {data.HOUSE_SECD_NM}
+                    </div>
 
-                  <div className='wrap'>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "8px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Image
-                        src='/images/icons/calendar.svg'
-                        width={16}
-                        height={16}
-                        alt='icon'
-                      />
-                      <h5>모집 공고일</h5>
+                    <div className='wrap'>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "8px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>모집 공고일</h5>
+                      </div>
+                      <div className='period'>{data.RCRIT_PBLANC_DE}</div>
                     </div>
-                    <div className='period'>{data.RCRIT_PBLANC_DE}</div>
+                    <div className='wrap'>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "8px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>청약 접수 기간</h5>
+                      </div>
+                      <div className='period'>
+                        {data.SUBSCRPT_RCEPT_BGNDE} ~{" "}
+                        {data.SUBSCRPT_RCEPT_ENDDE}
+                      </div>
+                    </div>
+                  </RightSection>
+                  <RightSection>
+                    <div className='wrap'>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "8px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>당첨자 발표일</h5>
+                      </div>
+                      <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
+                    </div>
+                    <div className='wrap'>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "8px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>계약 기간</h5>
+                      </div>
+                      <div className='period'>
+                        {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
+                      </div>
+                    </div>
+                    <div className='wrap'>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "8px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>입주 예정 월</h5>
+                      </div>
+                      <div className='period'>{data.MVN_PREARNGE_YM}</div>
+                    </div>
+                  </RightSection>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginLeft: "20px",
+                  }}
+                >
+                  <div style={{ display: "flex", gap: "8px" }}>
+                    {/* <Button text='경쟁률 보러가기' variant='primary' /> */}
                   </div>
-                  <div className='wrap'>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "8px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Image
-                        src='/images/icons/calendar.svg'
-                        width={16}
-                        height={16}
-                        alt='icon'
-                      />
-                      <h5>청약 접수 기간</h5>
-                    </div>
-                    <div className='period'>
-                      {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
-                    </div>
-                  </div>
-                </RightSection>
-                <RightSection>
-                  <div className='wrap'>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "8px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Image
-                        src='/images/icons/calendar.svg'
-                        width={16}
-                        height={16}
-                        alt='icon'
-                      />
-                      <h5>당첨자 발표일</h5>
-                    </div>
-                    <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
-                  </div>
-                  <div className='wrap'>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "8px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Image
-                        src='/images/icons/calendar.svg'
-                        width={16}
-                        height={16}
-                        alt='icon'
-                      />
-                      <h5>계약 기간</h5>
-                    </div>
-                    <div className='period'>
-                      {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
-                    </div>
-                  </div>
-                  <div className='wrap'>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "8px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Image
-                        src='/images/icons/calendar.svg'
-                        width={16}
-                        height={16}
-                        alt='icon'
-                      />
-                      <h5>입주 예정 월</h5>
-                    </div>
-                    <div className='period'>{data.MVN_PREARNGE_YM}</div>
-                  </div>
-                </RightSection>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: "20px",
-                }}
-              >
-                <div style={{ display: "flex", gap: "8px" }}>
-                  {/* <Button text='경쟁률 보러가기' variant='primary' /> */}
                 </div>
               </div>
-            </div>
-          </ModalContainer>
-        </Modal>
+            </ModalContainer>
+          </Modal>
+        )}
       </Container>
       <div
         style={{ height: "1px", width: "100%", background: color.main.green }}

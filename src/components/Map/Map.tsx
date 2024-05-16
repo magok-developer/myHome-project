@@ -9,9 +9,10 @@ declare global {
 
 type Props = {
   address: string;
+  index: string;
 };
 
-function MapComponent({ address }: Props) {
+function MapComponent({ address, index }: Props) {
   const mapScript = document.createElement("script");
   mapScript.async = true;
   mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&autoload=false&libraries=services`;
@@ -23,13 +24,18 @@ function MapComponent({ address }: Props) {
     const onLoadKakaoMap = () => {
       window.kakao.maps.load(() => {
         // 지도 생성
-        const mapContainer = document.getElementById(`${address}`), // 지도를 표시할 div
+        const mapContainer = document.getElementById(`${address}` + index), // 지도를 표시할 div
           mapOption = {
             center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
             level: 4, // 지도의 확대 레벨
           };
 
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+        if (index === "modal") {
+          map.relayout();
+          map.setCenter(new window.kakao.maps.LatLng(33.450701, 126.570667));
+        }
 
         // 주소-좌표 변환 객체를 생성합니다
         let geocoder = new window.kakao.maps.services.Geocoder();
@@ -62,7 +68,10 @@ function MapComponent({ address }: Props) {
   return (
     <>
       {visible ? (
-        <div style={{ width: "100%", height: "100%" }} id={`${address}`} />
+        <div
+          style={{ width: "100%", height: "100%" }}
+          id={`${address}` + index}
+        />
       ) : (
         <div
           id='load'
