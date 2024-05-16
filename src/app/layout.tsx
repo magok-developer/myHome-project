@@ -31,9 +31,9 @@ export default function RootLayout({
         }}
         className={noto.className}
       >
-        <script
+        <Script
           src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&libraries=services`}
-        ></script>
+        />
         <RootContainer>
           <div>{children}</div>
         </RootContainer>
