@@ -4,7 +4,6 @@ import { Map, MapMarker } from "react-kakao-maps-sdk";
 declare global {
   interface Window {
     kakao: any;
-    maps: any;
   }
 }
 type Props = {
