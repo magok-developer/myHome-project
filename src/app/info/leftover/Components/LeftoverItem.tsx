@@ -4,18 +4,18 @@ import { color } from "@/styles/color";
 import Image from "next/image";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import { APT_DETAIL_RESPONSE } from "@/api/model";
+import { LEFTOVER_DETAIL_RESPONSE } from "@/api/model";
 import Link from "next/link";
-import MapComponent from "@/components/Map/Map";
-import Button from "@/components/Button/Button";
-import Modal from "@/components/Modal/Modal";
+import MapComponent from "@/Components/Map/Map";
 import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
+import Modal from "@/Components/Modal/Modal";
+import Button from "@/Components/Button/Button";
 
 type Props = {
   id: string;
-  data: APT_DETAIL_RESPONSE;
+  data: LEFTOVER_DETAIL_RESPONSE;
 };
-const AptItem = ({ data }: Props) => {
+const LeftoverItem = ({ data }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -28,8 +28,8 @@ const AptItem = ({ data }: Props) => {
 
   const getApplicationStatus = (): APPLICATION_STATUS => {
     const today = new Date();
-    const startDate = new Date(data.RCEPT_BGNDE);
-    const endDate = new Date(data.RCEPT_ENDDE);
+    const startDate = new Date(data.SUBSCRPT_RCEPT_BGNDE);
+    const endDate = new Date(data.SUBSCRPT_RCEPT_ENDDE);
 
     if (today < startDate) {
       return APPLICATION_STATUS.UPCOMING;
@@ -74,9 +74,9 @@ const AptItem = ({ data }: Props) => {
             </p>
           </div>
           <div className='wrap'>
-            <p className='house-name' onClick={openModal}>
+            <div className='house-name' onClick={openModal}>
               {data.HOUSE_NM}
-            </p>
+            </div>
 
             <Image
               src='/images/icons/arrow-right.svg'
@@ -84,6 +84,16 @@ const AptItem = ({ data }: Props) => {
               height={20}
               alt='arrow'
             />
+          </div>
+
+          <div className='house-info'>
+            <Image
+              src='/images/icons/home.svg'
+              width={16}
+              height={16}
+              alt='icon'
+            />
+            {data.HOUSE_SECD_NM}
           </div>
 
           <DateWrap>
@@ -124,7 +134,7 @@ const AptItem = ({ data }: Props) => {
               청약 접수 기간
             </div>
             <div className='date'>
-              {data.RCEPT_BGNDE} ~ {data.RCEPT_ENDDE}
+              {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
             </div>
           </DateWrap>
         </Content>
@@ -153,6 +163,16 @@ const AptItem = ({ data }: Props) => {
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex" }}>
                   <RightSection>
+                    <div className='house-info'>
+                      <Image
+                        src='/images/icons/home.svg'
+                        width={16}
+                        height={16}
+                        alt='icon'
+                      />
+                      {data.HOUSE_SECD_NM}
+                    </div>
+
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
                         <Image
@@ -176,85 +196,12 @@ const AptItem = ({ data }: Props) => {
                         <h5>청약 접수 기간</h5>
                       </div>
                       <div className='period'>
-                        {data.SPSPLY_RCEPT_BGNDE} ~ {data.RCEPT_ENDDE}
-                      </div>
-                    </div>
-                    <div className='wrap'>
-                      <div className='icon-title-wrap'>
-                        <Image
-                          src='/images/icons/calendar.svg'
-                          width={16}
-                          height={16}
-                          alt='icon'
-                        />
-                        <h5>특별 공급 접수 기간</h5>
-                      </div>
-                      <div className='period'>
-                        {data.SPSPLY_RCEPT_BGNDE} ~ {data.SPSPLY_RCEPT_ENDDE}
-                      </div>
-                    </div>
-                    <div className='wrap'>
-                      <div className='icon-title-wrap'>
-                        <Image
-                          src='/images/icons/calendar.svg'
-                          width={16}
-                          height={16}
-                          alt='icon'
-                        />
-                        <h5>1순위 해당지역 접수 기간</h5>
-                      </div>
-                      <div className='period'>
-                        {data.GNRL_RNK1_CRSPAREA_RCPTDE} ~{" "}
-                        {data.GNRL_RNK1_CRSPAREA_ENDDE}
-                      </div>
-                    </div>
-                    <div className='wrap'>
-                      <div className='icon-title-wrap'>
-                        <Image
-                          src='/images/icons/calendar.svg'
-                          width={16}
-                          height={16}
-                          alt='icon'
-                        />
-                        <h5>1순위 기타지역 접수 기간</h5>
-                      </div>
-                      <div className='period'>
-                        {data.GNRL_RNK1_ETC_AREA_RCPTDE} ~{" "}
-                        {data.GNRL_RNK1_ETC_AREA_ENDDE}
+                        {data.SUBSCRPT_RCEPT_BGNDE} ~{" "}
+                        {data.SUBSCRPT_RCEPT_ENDDE}
                       </div>
                     </div>
                   </RightSection>
                   <RightSection>
-                    <div className='wrap'>
-                      <div className='icon-title-wrap'>
-                        <Image
-                          src='/images/icons/calendar.svg'
-                          width={16}
-                          height={16}
-                          alt='icon'
-                        />
-                        <h5>2순위 해당지역 접수 기간</h5>
-                      </div>
-                      <div className='period'>
-                        {data.GNRL_RNK2_CRSPAREA_RCPTDE} ~{" "}
-                        {data.GNRL_RNK2_CRSPAREA_ENDDE}
-                      </div>
-                    </div>
-                    <div className='wrap'>
-                      <div className='icon-title-wrap'>
-                        <Image
-                          src='/images/icons/calendar.svg'
-                          width={16}
-                          height={16}
-                          alt='icon'
-                        />
-                        <h5>2순위 기타지역 접수 기간</h5>
-                      </div>
-                      <div className='period'>
-                        {data.GNRL_RNK2_ETC_AREA_RCPTDE} ~{" "}
-                        {data.GNRL_RNK2_ETC_AREA_ENDDE}
-                      </div>
-                    </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
                         <Image
@@ -310,7 +257,7 @@ const AptItem = ({ data }: Props) => {
   );
 };
 
-export default AptItem;
+export default LeftoverItem;
 
 const Container = styled.div`
   display: flex;
@@ -334,6 +281,17 @@ const Content = styled.div`
     font-size: 14px;
     font-weight: bold;
   }
+
+  .house-info {
+    font-weight: bold;
+    font-size: 14px;
+    color: ${color.main.green};
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
   .house-name {
     font-size: 16px;
     font-weight: bold;
@@ -409,6 +367,16 @@ const RightSection = styled.div`
   gap: 40px;
 
   margin: 50px 50px 0 50px;
+
+  .house-info {
+    font-weight: bold;
+    font-size: 14px;
+    color: ${color.main.green};
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
   .wrap {
     display: flex;

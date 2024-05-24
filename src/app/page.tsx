@@ -3,7 +3,7 @@
 import { color } from "@/styles/color";
 import Image from "next/image";
 import styled from "@emotion/styled";
-import Header from "@/components/Header/Header";
+import Header from "@/Components/Header/Header";
 
 const Page = () => {
   return (

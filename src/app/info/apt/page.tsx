@@ -6,14 +6,12 @@ import { rest } from "@/api/rest";
 import { getAptSalesInfoDetail } from "@/api/api";
 import { APT_DETAIL_REQUEST } from "@/api/model";
 import dotenv from "dotenv";
-
 import styled from "@emotion/styled";
-import SelectBox from "@/components/SelectBox/SelectBox";
-
-import useChangeSelect from "@/components/hook/useChangeSelect";
+import SelectBox from "@/Components/SelectBox/SelectBox";
+import useChangeSelect from "@/Components/hook/useChangeSelect";
 import Image from "next/image";
-import AptItem from "./components/AptItem";
-import TopButton from "@/components/Button/TopButton";
+import AptItem from "./Components/AptItem";
+import TopButton from "@/Components/Button/TopButton";
 import { color } from "@/styles/color";
 import { AREA_CODE_OPTIONS } from "../../../../public/static/static";
 

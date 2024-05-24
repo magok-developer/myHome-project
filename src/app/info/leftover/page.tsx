@@ -4,17 +4,16 @@ import styled from "@emotion/styled";
 import Image from "next/image";
 import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-import useChangeSelect from "@/components/hook/useChangeSelect";
+import useChangeSelect from "@/Components/hook/useChangeSelect";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { rest } from "@/api/rest";
 import { getLeftoverSalesInfoDetail } from "@/api/api";
 import { LEFTOVER_DETAIL_REQUEST } from "@/api/model";
-import SelectBox from "@/components/SelectBox/SelectBox";
-
-import TopButton from "@/components/Button/TopButton";
+import SelectBox from "@/Components/SelectBox/SelectBox";
+import TopButton from "@/Components/Button/TopButton";
 import { color } from "@/styles/color";
 import { LEFTOVER_HOUSE_CODE_OPTIONS } from "../../../../public/static/static";
-import LeftoverItem from "./components/LeftoverItem";
+import LeftoverItem from "./Components/LeftoverItem";
 
 dotenv.config();
 

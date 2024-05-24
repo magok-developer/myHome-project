@@ -1,21 +1,19 @@
 "use client";
 
 import { rest } from "@/api/rest";
-import SelectBox from "@/components/SelectBox/SelectBox";
-import useChangeSelect from "@/components/hook/useChangeSelect";
+import SelectBox from "@/Components/SelectBox/SelectBox";
+import useChangeSelect from "@/Components/hook/useChangeSelect";
 import styled from "@emotion/styled";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import dotenv from "dotenv";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
 import { getEtcSalesInfoDetail } from "@/api/api";
 import { ETC_DETAIL_REQUEST } from "@/api/model";
-
-import TopButton from "@/components/Button/TopButton";
+import TopButton from "@/Components/Button/TopButton";
 import { color } from "@/styles/color";
 import { HOUSE_CODE_OPTIONS } from "../../../../public/static/static";
-import EtcItem from "./components/EtcItem";
+import EtcItem from "./Components/EtcItem";
 
 dotenv.config();
 

@@ -1,10 +1,9 @@
 import { Noto_Sans_KR } from "next/font/google";
 
-import RootContainer from "@/components/RootContainer";
+import RootContainer from "@/Components/RootContainer";
 import type { Metadata } from "next";
 import "../../public/reset.css";
 import { color } from "@/styles/color";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "My Home",

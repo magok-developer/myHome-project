@@ -4,14 +4,12 @@ import styled from "@emotion/styled";
 import Image from "next/image";
 import dotenv from "dotenv";
 import React, { useEffect, useState } from "react";
-
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { rest } from "@/api/rest";
 import { getPublicSalesInfoDetail } from "@/api/api";
 import { PUBLIC_DETAIL_REQUEST } from "@/api/model";
-
-import PublicItem from "./components/PublicItem";
-import TopButton from "@/components/Button/TopButton";
+import PublicItem from "./Components/PublicItem";
+import TopButton from "@/Components/Button/TopButton";
 import { color } from "@/styles/color";
 
 dotenv.config();

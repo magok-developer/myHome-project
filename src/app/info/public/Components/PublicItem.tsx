@@ -4,19 +4,20 @@ import { color } from "@/styles/color";
 import Image from "next/image";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import Link from "next/link";
-import { ETC_DETAIL_RESPONSE } from "@/api/model";
+import { PUBLIC_DETAIL_RESPONSE } from "@/api/model";
 import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
-import MapComponent from "@/components/Map/Map";
-import { formatForHouseCode } from "../../../../../public/lib/formatForEnum";
-import Modal from "@/components/Modal/Modal";
-import Button from "@/components/Button/Button";
+import MapComponent from "@/Components/Map/Map";
+import Modal from "@/Components/Modal/Modal";
 
 type Props = {
   id: string;
-  data: ETC_DETAIL_RESPONSE;
+  data: PUBLIC_DETAIL_RESPONSE;
 };
-const EtcItem = ({ data }: Props) => {
+const PublicItem = ({
+  id,
+
+  data,
+}: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -94,7 +95,7 @@ const EtcItem = ({ data }: Props) => {
               height={16}
               alt='icon'
             />
-            {formatForHouseCode(data.SEARCH_HOUSE_SECD)}
+            {data.HOUSE_SECD_NM}
           </div>
 
           <DateWrap>
@@ -171,7 +172,7 @@ const EtcItem = ({ data }: Props) => {
                         height={16}
                         alt='icon'
                       />
-                      {formatForHouseCode(data.SEARCH_HOUSE_SECD)}
+                      {data.HOUSE_SECD_NM}
                     </div>
 
                     <div className='wrap'>
@@ -243,11 +244,6 @@ const EtcItem = ({ data }: Props) => {
                     </div>
                   </RightSection>
                 </div>
-                <div className='button-wrap'>
-                  <Link href={data.PBLANC_URL} target='_blank'>
-                    <Button text='청약홈으로 이동' variant='secondary' />
-                  </Link>
-                </div>
               </div>
             </ModalContainer>
           </Modal>
@@ -258,7 +254,7 @@ const EtcItem = ({ data }: Props) => {
   );
 };
 
-export default EtcItem;
+export default PublicItem;
 
 const Container = styled.div`
   display: flex;
@@ -334,14 +330,6 @@ const ModalContainer = styled.div`
     margin-left: 50px;
     display: flex;
     align-items: center;
-  }
-
-  .button-wrap {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
   }
 `;
 
