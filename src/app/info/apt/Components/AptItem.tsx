@@ -96,9 +96,9 @@ const AptItem = ({ data }: Props) => {
               />
               주소
             </div>
-            <div className='address'>
+            <span className='address'>
               ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
-            </div>
+            </span>
           </DateWrap>
 
           <DateWrap>
@@ -111,7 +111,7 @@ const AptItem = ({ data }: Props) => {
               />
               모집 공고일
             </div>
-            <div className='date'>{data.RCRIT_PBLANC_DE}</div>
+            <span className='date'>{data.RCRIT_PBLANC_DE}</span>
           </DateWrap>
           <DateWrap>
             <div className='title'>
@@ -123,9 +123,9 @@ const AptItem = ({ data }: Props) => {
               />
               청약 접수 기간
             </div>
-            <div className='date'>
+            <span className='date'>
               {data.RCEPT_BGNDE} ~ {data.RCEPT_ENDDE}
-            </div>
+            </span>
           </DateWrap>
         </Content>
         {isModalOpen && (
@@ -140,9 +140,9 @@ const AptItem = ({ data }: Props) => {
                     height={16}
                     alt='icon'
                   />
-                  <p className='address'>
+                  <span className='address'>
                     ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
-                  </p>
+                  </span>
                 </div>
 
                 <div style={{ width: "90%", height: "70%" }}>
@@ -163,7 +163,7 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>모집 공고일</h5>
                       </div>
-                      <div className='period'>{data.RCRIT_PBLANC_DE}</div>
+                      <span className='period'>{data.RCRIT_PBLANC_DE}</span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -175,9 +175,9 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>청약 접수 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.SPSPLY_RCEPT_BGNDE} ~ {data.RCEPT_ENDDE}
-                      </div>
+                      </span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -189,9 +189,9 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>특별 공급 접수 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.SPSPLY_RCEPT_BGNDE} ~ {data.SPSPLY_RCEPT_ENDDE}
-                      </div>
+                      </span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -203,10 +203,10 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>1순위 해당지역 접수 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.GNRL_RNK1_CRSPAREA_RCPTDE} ~{" "}
                         {data.GNRL_RNK1_CRSPAREA_ENDDE}
-                      </div>
+                      </span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -218,10 +218,10 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>1순위 기타지역 접수 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.GNRL_RNK1_ETC_AREA_RCPTDE} ~{" "}
                         {data.GNRL_RNK1_ETC_AREA_ENDDE}
-                      </div>
+                      </span>
                     </div>
                   </RightSection>
                   <RightSection>
@@ -235,10 +235,10 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>2순위 해당지역 접수 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.GNRL_RNK2_CRSPAREA_RCPTDE} ~{" "}
                         {data.GNRL_RNK2_CRSPAREA_ENDDE}
-                      </div>
+                      </span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -250,10 +250,10 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>2순위 기타지역 접수 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.GNRL_RNK2_ETC_AREA_RCPTDE} ~{" "}
                         {data.GNRL_RNK2_ETC_AREA_ENDDE}
-                      </div>
+                      </span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -265,7 +265,7 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>당첨자 발표일</h5>
                       </div>
-                      <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
+                      <span className='period'>{data.PRZWNER_PRESNATN_DE}</span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -277,9 +277,9 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>계약 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
-                      </div>
+                      </span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -291,7 +291,7 @@ const AptItem = ({ data }: Props) => {
                         />
                         <h5>입주 예정 월</h5>
                       </div>
-                      <div className='period'>{data.MVN_PREARNGE_YM}</div>
+                      <span className='period'>{data.MVN_PREARNGE_YM}</span>
                     </div>
                   </RightSection>
                 </div>

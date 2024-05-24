@@ -106,7 +106,7 @@ const LeftoverItem = ({ data }: Props) => {
               />
               주소
             </div>
-            <div className='address'>
+            <span className='address'>
               ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
             </div>
           </DateWrap>
@@ -121,7 +121,7 @@ const LeftoverItem = ({ data }: Props) => {
               />
               모집 공고일
             </div>
-            <div className='date'>{data.RCRIT_PBLANC_DE}</div>
+            <span className='date'>{data.RCRIT_PBLANC_DE}</div>
           </DateWrap>
           <DateWrap>
             <div className='title'>
@@ -133,7 +133,7 @@ const LeftoverItem = ({ data }: Props) => {
               />
               청약 접수 기간
             </div>
-            <div className='date'>
+            <span className='date'>
               {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
             </div>
           </DateWrap>
@@ -150,7 +150,7 @@ const LeftoverItem = ({ data }: Props) => {
                     height={16}
                     alt='icon'
                   />
-                  <p className='address'>
+                  <span className='address'>
                     ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
                   </p>
                 </div>
@@ -183,7 +183,7 @@ const LeftoverItem = ({ data }: Props) => {
                         />
                         <h5>모집 공고일</h5>
                       </div>
-                      <div className='period'>{data.RCRIT_PBLANC_DE}</div>
+                      <span className='period'>{data.RCRIT_PBLANC_DE}</div>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -195,7 +195,7 @@ const LeftoverItem = ({ data }: Props) => {
                         />
                         <h5>청약 접수 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.SUBSCRPT_RCEPT_BGNDE} ~{" "}
                         {data.SUBSCRPT_RCEPT_ENDDE}
                       </div>
@@ -212,7 +212,7 @@ const LeftoverItem = ({ data }: Props) => {
                         />
                         <h5>당첨자 발표일</h5>
                       </div>
-                      <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
+                      <span className='period'>{data.PRZWNER_PRESNATN_DE}</div>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -224,7 +224,7 @@ const LeftoverItem = ({ data }: Props) => {
                         />
                         <h5>계약 기간</h5>
                       </div>
-                      <div className='period'>
+                      <span className='period'>
                         {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
                       </div>
                     </div>
@@ -238,7 +238,7 @@ const LeftoverItem = ({ data }: Props) => {
                         />
                         <h5>입주 예정 월</h5>
                       </div>
-                      <div className='period'>{data.MVN_PREARNGE_YM}</div>
+                      <span className='period'>{data.MVN_PREARNGE_YM}</div>
                     </div>
                   </RightSection>
                 </div>
