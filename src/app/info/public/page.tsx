@@ -65,16 +65,8 @@ const Page = () => {
   return (
     <Container>
       <Title>
-        <div
-          style={{
-            fontSize: "24px",
-            fontWeight: "bold",
-            color: color.main.deepGreen,
-          }}
-        >
-          분양 정보
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <h2 className='sales-info'>분양 정보</h2>
+        <div className='title-wrap'>
           <Image
             src='/images/icons/home.svg'
             width={24}
@@ -114,15 +106,19 @@ const Title = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 20px;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
   margin: 30px 0;
-`;
 
-const FilterWrap = styled.div`
-  display: flex;
-  justify-content: end;
-  margin: 40px 0;
+  .sales-info {
+    color: ${color.main.deepGreen};
+  }
+
+  .title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
 `;

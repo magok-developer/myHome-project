@@ -1,4 +1,5 @@
 import { color } from "@/styles/color";
+import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 
 declare global {
@@ -68,30 +69,28 @@ function MapComponent({ address, index }: Props) {
   return (
     <>
       {visible ? (
-        <div
-          style={{ width: "100%", height: "100%" }}
-          id={`${address}` + index}
-        />
+        <Map id={`${address}` + index} />
       ) : (
-        <div
-          id='load'
-          style={{
-            width: "100%",
-            height: "100%",
-            background: "none",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: 16,
-            fontWeight: "bold",
-            color: color.main.green,
-          }}
-        >
-          지도 준비중
-        </div>
+        <MapText id='load'>지도 준비중</MapText>
       )}
     </>
   );
 }
 
 export default MapComponent;
+
+const Map = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+const MapText = styled.div`
+  width: 100%;
+  height: 100%;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: ${color.main.green};
+`;

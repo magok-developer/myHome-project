@@ -59,7 +59,7 @@ const SelectBox = <T,>({
           width={16}
           height={16}
           alt='arrow'
-          style={{ position: "absolute", right: "4px", cursor: "pointer" }}
+          className='arrow'
         />
       </StyledSelect>
       {visible && (
@@ -107,6 +107,12 @@ const StyledSelect = styled.div<any>`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .arrow {
+    position: absolute;
+    right: 4px;
+    cursor: pointer;
   }
 `;
 

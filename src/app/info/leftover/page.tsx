@@ -80,16 +80,8 @@ const Page = () => {
   return (
     <Container>
       <Title>
-        <div
-          style={{
-            fontSize: "24px",
-            fontWeight: "bold",
-            color: color.main.deepGreen,
-          }}
-        >
-          분양 정보
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <h2 className='sales-info'>분양 정보</h2>
+        <div className='title-wrap'>
           <Image
             src='/images/icons/building.svg'
             width={24}
@@ -100,8 +92,8 @@ const Page = () => {
         </div>
       </Title>
       <FilterWrap>
-        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-          <div style={{ fontSize: "14px", fontWeight: "bold" }}>주택 구분</div>
+        <div className='wrap'>
+          <h5>주택 구분</h5>
           <SelectBox
             options={LEFTOVER_HOUSE_CODE_OPTIONS}
             value={select}
@@ -139,15 +131,31 @@ const Title = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 20px;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
   margin: 30px 0;
+
+  .sales-info {
+    color: ${color.main.deepGreen};
+  }
+
+  .title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
 `;
 
 const FilterWrap = styled.div`
   display: flex;
   justify-content: end;
   margin: 40px 0;
+
+  .wrap {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
 `;

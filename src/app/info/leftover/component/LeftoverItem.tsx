@@ -4,9 +4,7 @@ import { color } from "@/styles/color";
 import Image from "next/image";
 import { useState } from "react";
 import styled from "@emotion/styled";
-
 import { LEFTOVER_DETAIL_RESPONSE } from "@/api/model";
-
 import Link from "next/link";
 import MapComponent from "@/components/Map/Map";
 import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
@@ -17,11 +15,7 @@ type Props = {
   id: string;
   data: LEFTOVER_DETAIL_RESPONSE;
 };
-const LeftoverItem = ({
-  id,
-
-  data,
-}: Props) => {
+const LeftoverItem = ({ data }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -68,26 +62,18 @@ const LeftoverItem = ({
           <MapComponent address={data.HSSPLY_ADRES} index='page' />
         </div>
         <Content>
-          <div
-            style={{
-              color: textColor,
-              fontSize: "14px",
-              fontWeight: "bold",
-              marginBottom: "4px",
-              display: "flex",
-              alignItems: "center",
-              gap: "4px",
-            }}
-          >
+          <div className='wrap'>
             <Image
               src='/images/icons/flag.svg'
               width={16}
               height={16}
               alt='flag'
             />
-            {status}
+            <p style={{ color: textColor }} className='status'>
+              {status}
+            </p>
           </div>
-          <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+          <div className='wrap'>
             <div className='house-name' onClick={openModal}>
               {data.HOUSE_NM}
             </div>
@@ -100,17 +86,7 @@ const LeftoverItem = ({
             />
           </div>
 
-          <div
-            style={{
-              fontWeight: "bold",
-              fontSize: "14px",
-              color: color.main.green,
-              marginTop: "10px",
-              display: "flex",
-              alignItems: "center",
-              gap: "4px",
-            }}
-          >
+          <div className='house-info'>
             <Image
               src='/images/icons/home.svg'
               width={16}
@@ -167,21 +143,16 @@ const LeftoverItem = ({
             <ModalContainer>
               <LeftSection>
                 <h3>{data.HOUSE_NM}</h3>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
+                <div className='wrap'>
                   <Image
                     src='/images/icons/location.svg'
                     width={16}
                     height={16}
                     alt='icon'
-                    style={{ marginRight: "4px" }}
                   />
-                  ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
+                  <p className='address'>
+                    ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
+                  </p>
                 </div>
 
                 <div style={{ width: "90%", height: "70%" }}>
@@ -192,17 +163,7 @@ const LeftoverItem = ({
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex" }}>
                   <RightSection>
-                    <div
-                      style={{
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                        color: color.main.green,
-                        marginTop: "10px",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
+                    <div className='house-info'>
                       <Image
                         src='/images/icons/home.svg'
                         width={16}
@@ -213,13 +174,7 @@ const LeftoverItem = ({
                     </div>
 
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -231,13 +186,7 @@ const LeftoverItem = ({
                       <div className='period'>{data.RCRIT_PBLANC_DE}</div>
                     </div>
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -254,13 +203,7 @@ const LeftoverItem = ({
                   </RightSection>
                   <RightSection>
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -272,13 +215,7 @@ const LeftoverItem = ({
                       <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
                     </div>
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -292,13 +229,7 @@ const LeftoverItem = ({
                       </div>
                     </div>
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -311,30 +242,17 @@ const LeftoverItem = ({
                     </div>
                   </RightSection>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flex: 1,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginLeft: "20px",
-                  }}
-                >
-                  <div style={{ display: "flex", gap: "8px" }}>
-                    <Link href={data.PBLANC_URL} target='_blank'>
-                      <Button text='청약홈으로 이동' variant='secondary' />
-                    </Link>
-                    {/* <Button text='경쟁률 보러가기' variant='primary' /> */}
-                  </div>
+                <div className='button-wrap'>
+                  <Link href={data.PBLANC_URL} target='_blank'>
+                    <Button text='청약홈으로 이동' variant='secondary' />
+                  </Link>
                 </div>
               </div>
             </ModalContainer>
           </Modal>
         )}
       </Container>
-      <div
-        style={{ height: "1px", width: "100%", background: color.main.green }}
-      />
+      <Line />
     </>
   );
 };
@@ -353,6 +271,27 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 8px;
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .status {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .house-info {
+    font-weight: bold;
+    font-size: 14px;
+    color: ${color.main.green};
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
   .house-name {
     font-size: 16px;
     font-weight: bold;
@@ -395,6 +334,14 @@ const ModalContainer = styled.div`
     display: flex;
     align-items: center;
   }
+
+  .button-wrap {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
 `;
 
 const LeftSection = styled.div`
@@ -402,6 +349,16 @@ const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .address {
+    font-size: 14px;
+  }
 `;
 
 const RightSection = styled.div`
@@ -411,13 +368,36 @@ const RightSection = styled.div`
 
   margin: 50px 50px 0 50px;
 
+  .house-info {
+    font-weight: bold;
+    font-size: 14px;
+    color: ${color.main.green};
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   .wrap {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
+
+  .icon-title-wrap {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
   .period {
     font-size: 12px;
     margin-left: 26px;
   }
+`;
+
+const Line = styled.div`
+  height: 1px;
+  width: 100%;
+  background: ${color.main.green};
 `;

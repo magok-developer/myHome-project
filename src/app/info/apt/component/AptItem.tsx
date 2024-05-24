@@ -4,24 +4,18 @@ import { color } from "@/styles/color";
 import Image from "next/image";
 import { useState } from "react";
 import styled from "@emotion/styled";
-
+import { APT_DETAIL_RESPONSE } from "@/api/model";
 import Link from "next/link";
-import { ETC_DETAIL_RESPONSE } from "@/api/model";
-import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
 import MapComponent from "@/components/Map/Map";
-import { formatForHouseCode } from "../../../../../public/lib/formatForEnum";
-import Modal from "@/components/Modal/Modal";
 import Button from "@/components/Button/Button";
+import Modal from "@/components/Modal/Modal";
+import { APPLICATION_STATUS } from "../../../../../public/lib/enum";
 
 type Props = {
   id: string;
-  data: ETC_DETAIL_RESPONSE;
+  data: APT_DETAIL_RESPONSE;
 };
-const EtcItem = ({
-  id,
-
-  data,
-}: Props) => {
+const AptItem = ({ data }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -34,8 +28,8 @@ const EtcItem = ({
 
   const getApplicationStatus = (): APPLICATION_STATUS => {
     const today = new Date();
-    const startDate = new Date(data.SUBSCRPT_RCEPT_BGNDE);
-    const endDate = new Date(data.SUBSCRPT_RCEPT_ENDDE);
+    const startDate = new Date(data.RCEPT_BGNDE);
+    const endDate = new Date(data.RCEPT_ENDDE);
 
     if (today < startDate) {
       return APPLICATION_STATUS.UPCOMING;
@@ -68,29 +62,21 @@ const EtcItem = ({
           <MapComponent address={data.HSSPLY_ADRES} index='page' />
         </div>
         <Content>
-          <div
-            style={{
-              color: textColor,
-              fontSize: "14px",
-              fontWeight: "bold",
-              marginBottom: "4px",
-              display: "flex",
-              alignItems: "center",
-              gap: "4px",
-            }}
-          >
+          <div className='wrap'>
             <Image
               src='/images/icons/flag.svg'
               width={16}
               height={16}
               alt='flag'
             />
-            {status}
+            <p style={{ color: textColor }} className='status'>
+              {status}
+            </p>
           </div>
-          <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-            <div className='house-name' onClick={openModal}>
+          <div className='wrap'>
+            <p className='house-name' onClick={openModal}>
               {data.HOUSE_NM}
-            </div>
+            </p>
 
             <Image
               src='/images/icons/arrow-right.svg'
@@ -98,26 +84,6 @@ const EtcItem = ({
               height={20}
               alt='arrow'
             />
-          </div>
-
-          <div
-            style={{
-              fontWeight: "bold",
-              fontSize: "14px",
-              color: color.main.green,
-              marginTop: "10px",
-              display: "flex",
-              alignItems: "center",
-              gap: "4px",
-            }}
-          >
-            <Image
-              src='/images/icons/home.svg'
-              width={16}
-              height={16}
-              alt='icon'
-            />
-            {formatForHouseCode(data.SEARCH_HOUSE_SECD)}
           </div>
 
           <DateWrap>
@@ -158,7 +124,7 @@ const EtcItem = ({
               청약 접수 기간
             </div>
             <div className='date'>
-              {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
+              {data.RCEPT_BGNDE} ~ {data.RCEPT_ENDDE}
             </div>
           </DateWrap>
         </Content>
@@ -167,21 +133,16 @@ const EtcItem = ({
             <ModalContainer>
               <LeftSection>
                 <h3>{data.HOUSE_NM}</h3>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
+                <div className='wrap'>
                   <Image
                     src='/images/icons/location.svg'
                     width={16}
                     height={16}
                     alt='icon'
-                    style={{ marginRight: "4px" }}
                   />
-                  ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
+                  <p className='address'>
+                    ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
+                  </p>
                 </div>
 
                 <div style={{ width: "90%", height: "70%" }}>
@@ -192,34 +153,8 @@ const EtcItem = ({
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex" }}>
                   <RightSection>
-                    <div
-                      style={{
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                        color: color.main.green,
-                        marginTop: "10px",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <Image
-                        src='/images/icons/home.svg'
-                        width={16}
-                        height={16}
-                        alt='icon'
-                      />
-                      {formatForHouseCode(data.SEARCH_HOUSE_SECD)}
-                    </div>
-
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -231,13 +166,7 @@ const EtcItem = ({
                       <div className='period'>{data.RCRIT_PBLANC_DE}</div>
                     </div>
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -247,20 +176,87 @@ const EtcItem = ({
                         <h5>청약 접수 기간</h5>
                       </div>
                       <div className='period'>
-                        {data.SUBSCRPT_RCEPT_BGNDE} ~{" "}
-                        {data.SUBSCRPT_RCEPT_ENDDE}
+                        {data.SPSPLY_RCEPT_BGNDE} ~ {data.RCEPT_ENDDE}
+                      </div>
+                    </div>
+                    <div className='wrap'>
+                      <div className='icon-title-wrap'>
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>특별 공급 접수 기간</h5>
+                      </div>
+                      <div className='period'>
+                        {data.SPSPLY_RCEPT_BGNDE} ~ {data.SPSPLY_RCEPT_ENDDE}
+                      </div>
+                    </div>
+                    <div className='wrap'>
+                      <div className='icon-title-wrap'>
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>1순위 해당지역 접수 기간</h5>
+                      </div>
+                      <div className='period'>
+                        {data.GNRL_RNK1_CRSPAREA_RCPTDE} ~{" "}
+                        {data.GNRL_RNK1_CRSPAREA_ENDDE}
+                      </div>
+                    </div>
+                    <div className='wrap'>
+                      <div className='icon-title-wrap'>
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>1순위 기타지역 접수 기간</h5>
+                      </div>
+                      <div className='period'>
+                        {data.GNRL_RNK1_ETC_AREA_RCPTDE} ~{" "}
+                        {data.GNRL_RNK1_ETC_AREA_ENDDE}
                       </div>
                     </div>
                   </RightSection>
                   <RightSection>
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>2순위 해당지역 접수 기간</h5>
+                      </div>
+                      <div className='period'>
+                        {data.GNRL_RNK2_CRSPAREA_RCPTDE} ~{" "}
+                        {data.GNRL_RNK2_CRSPAREA_ENDDE}
+                      </div>
+                    </div>
+                    <div className='wrap'>
+                      <div className='icon-title-wrap'>
+                        <Image
+                          src='/images/icons/calendar.svg'
+                          width={16}
+                          height={16}
+                          alt='icon'
+                        />
+                        <h5>2순위 기타지역 접수 기간</h5>
+                      </div>
+                      <div className='period'>
+                        {data.GNRL_RNK2_ETC_AREA_RCPTDE} ~{" "}
+                        {data.GNRL_RNK2_ETC_AREA_ENDDE}
+                      </div>
+                    </div>
+                    <div className='wrap'>
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -272,13 +268,7 @@ const EtcItem = ({
                       <div className='period'>{data.PRZWNER_PRESNATN_DE}</div>
                     </div>
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -292,13 +282,7 @@ const EtcItem = ({
                       </div>
                     </div>
                     <div className='wrap'>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className='icon-title-wrap'>
                         <Image
                           src='/images/icons/calendar.svg'
                           width={16}
@@ -311,35 +295,22 @@ const EtcItem = ({
                     </div>
                   </RightSection>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flex: 1,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginLeft: "20px",
-                  }}
-                >
-                  <div style={{ display: "flex", gap: "8px" }}>
-                    <Link href={data.PBLANC_URL} target='_blank'>
-                      <Button text='청약홈으로 이동' variant='secondary' />
-                    </Link>
-                    {/* <Button text='경쟁률 보러가기' variant='primary' /> */}
-                  </div>
+                <div className='button-wrap'>
+                  <Link href={data.PBLANC_URL} target='_blank'>
+                    <Button text='청약홈으로 이동' variant='secondary' />
+                  </Link>
                 </div>
               </div>
             </ModalContainer>
           </Modal>
         )}
       </Container>
-      <div
-        style={{ height: "1px", width: "100%", background: color.main.green }}
-      />
+      <Line />
     </>
   );
 };
 
-export default EtcItem;
+export default AptItem;
 
 const Container = styled.div`
   display: flex;
@@ -353,6 +324,16 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 8px;
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .status {
+    font-size: 14px;
+    font-weight: bold;
+  }
   .house-name {
     font-size: 16px;
     font-weight: bold;
@@ -395,6 +376,14 @@ const ModalContainer = styled.div`
     display: flex;
     align-items: center;
   }
+
+  .button-wrap {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
 `;
 
 const LeftSection = styled.div`
@@ -402,6 +391,16 @@ const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .address {
+    font-size: 14px;
+  }
 `;
 
 const RightSection = styled.div`
@@ -416,8 +415,21 @@ const RightSection = styled.div`
     flex-direction: column;
     gap: 8px;
   }
+
+  .icon-title-wrap {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
   .period {
     font-size: 12px;
     margin-left: 26px;
   }
+`;
+
+const Line = styled.div`
+  height: 1px;
+  width: 100%;
+  background: ${color.main.green};
 `;

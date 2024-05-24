@@ -1,4 +1,3 @@
-import { color } from "@/styles/color";
 import styled from "@emotion/styled";
 import Image from "next/image";
 
