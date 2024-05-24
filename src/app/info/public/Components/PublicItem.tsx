@@ -110,7 +110,7 @@ const PublicItem = ({
             </div>
             <span className='address'>
               ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
-            </div>
+            </span>
           </DateWrap>
 
           <DateWrap>
@@ -123,7 +123,7 @@ const PublicItem = ({
               />
               모집 공고일
             </div>
-            <span className='date'>{data.RCRIT_PBLANC_DE}</div>
+            <span className='date'>{data.RCRIT_PBLANC_DE}</span>
           </DateWrap>
           <DateWrap>
             <div className='title'>
@@ -137,7 +137,7 @@ const PublicItem = ({
             </div>
             <span className='date'>
               {data.SUBSCRPT_RCEPT_BGNDE} ~ {data.SUBSCRPT_RCEPT_ENDDE}
-            </div>
+            </span>
           </DateWrap>
         </Content>
         {isModalOpen && (
@@ -154,7 +154,7 @@ const PublicItem = ({
                   />
                   <span className='address'>
                     ({data.HSSPLY_ZIP}) {data.HSSPLY_ADRES}
-                  </p>
+                  </span>
                 </div>
 
                 <div style={{ width: "90%", height: "70%" }}>
@@ -185,7 +185,7 @@ const PublicItem = ({
                         />
                         <h5>모집 공고일</h5>
                       </div>
-                      <span className='period'>{data.RCRIT_PBLANC_DE}</div>
+                      <span className='period'>{data.RCRIT_PBLANC_DE}</span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -200,7 +200,7 @@ const PublicItem = ({
                       <span className='period'>
                         {data.SUBSCRPT_RCEPT_BGNDE} ~{" "}
                         {data.SUBSCRPT_RCEPT_ENDDE}
-                      </div>
+                      </span>
                     </div>
                   </RightSection>
                   <RightSection>
@@ -214,7 +214,7 @@ const PublicItem = ({
                         />
                         <h5>당첨자 발표일</h5>
                       </div>
-                      <span className='period'>{data.PRZWNER_PRESNATN_DE}</div>
+                      <span className='period'>{data.PRZWNER_PRESNATN_DE}</span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -228,7 +228,7 @@ const PublicItem = ({
                       </div>
                       <span className='period'>
                         {data.CNTRCT_CNCLS_BGNDE} ~ {data.CNTRCT_CNCLS_ENDDE}
-                      </div>
+                      </span>
                     </div>
                     <div className='wrap'>
                       <div className='icon-title-wrap'>
@@ -240,7 +240,7 @@ const PublicItem = ({
                         />
                         <h5>입주 예정 월</h5>
                       </div>
-                      <span className='period'>{data.MVN_PREARNGE_YM}</div>
+                      <span className='period'>{data.MVN_PREARNGE_YM}</span>
                     </div>
                   </RightSection>
                 </div>
